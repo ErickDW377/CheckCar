@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="{{url_for('static',filename='css/estilos.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet">
 </head>
 
 <body>
-    <header>        
-        <h1 >Bienvenido a la tienda en linea SHOPITESZ</h1>
-        <nav >        
-            <a href="/tarjetas">Tarjetas</a>
+    <header >
+        <div class="encabezado">
+            CHECK CAR
+            <a href="/login"><img class="icono" src="{{url_for('static',filename='images/login.png')}}"></a> </a>
+        </div>
+
+        <nav class="menu">
+            <a href="/servicios">Servicios</a>
         </nav>
     </header>
+
+
+
+
 </body>
