@@ -3,19 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet">
+    <title>CHECK CAR </title>
+    <link href="inicio.css" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet">    
+    
 </head>
 
 <body>
-    <header >
-        <div class="encabezado">
-            CHECK CAR
-            <a href="/login"><img class="icono" src="{{url_for('static',filename='images/login.png')}}"></a> </a>
+    <header >        
+        <div class="encabezado">            
+            <label class="txt-encabezado"> CHECK CAR </label>            
+            <label class=" slot-end padding-m" >
+                <a href="/login"><img   class="icon-g " src="{{url_for('static',filename='images/login.png')}}"></a> </a>
+            </label>             
+            
+                        
         </div>
 
-        <nav class="menu">
-            <a href="/servicios">Servicios</a>
+        <nav class="menu"> 
+            <label class="padding"><a href="/"> Inicio </a></label>       
+            <label class="padding"><a href=""> Clientes </a></label>
+            <label class="padding"><a href="/autos"> Autos </a></label>
+            <label class="padding"><a href="/servicios"> Servicios </a></label>
+            <label class="padding"><a href=""> Mecanicos </a></label>
+            <label class="padding"><a href=""> Productos </a></label>                     
         </nav>
     </header>
 

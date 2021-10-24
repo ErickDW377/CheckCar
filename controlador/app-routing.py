@@ -10,17 +10,15 @@ def incio():
 def login():    
     return  render_template('login/login.html')
 
-@app.route('/servicios')
-def servicios():    
-    return  render_template('servicios/servicios.html')  
+@app.route('/autos')
+def autos():    
+    return  render_template('autos/autos.html')    
 
-@app.route('/registrarServicio')
-def registrarServicio():    
-    return  render_template('servicios/servicios-registrar.html') 
+@app.route('/formularioAutos')
+def registrarAuto():    
+    return  render_template('autos/autos-formulario.html')  
 
-@app.route('/editarServicio')
-def editarServicio():    
-    return  render_template('servicios/servicios-editar.html')    
+  
 
 if __name__=='__main__':
     app.run(debug=True)

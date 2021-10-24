@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CHECK CAR </title>
+    <link
+      href="{{url_for('static',filename='css/estilos-globales.css')}}"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="encabezado txt-encabezado">Autos</header>
+    <nav class="menu">
+      <label class="padding"><a href="/"> Inicio </a></label>            
+      <label class="padding"><a href=""> Clientes </a></label>
+      <label class="padding"><a href="/autos"> Autos </a></label>
+      <label class="padding"><a href="/servicios"> Servicios </a></label>
+      <label class="padding"><a href=""> Mecanicos </a></label>
+      <label class="padding"><a href=""> Productos </a></label>                
+  </nav>
+    <section class="padding-m txt-encabezado">
+      <label">
+        <img
+        class="slot-start padding icon-xxg"
+        src="{{url_for('static',filename='images/autos.png')}}"
+      />
+      </label>      
+    <label class="padding-sm">
+        <a href="/formularioAutos">
+            <button  class="boton-icono alineacion">
+                <img src="{{url_for('static',filename='images/registrar.png')}}" />
+                <label class="slot-end padding-center"> Registrar auto </label>
+            </button>
+        </a>        
+    </label>
+      
+    </section>
+
+    <section class="slot-center padding-g">
+      <h2 class="txt-encabezado2">Listado de autos</h2>
+      <table>
+        <thead class="slot-center">
+          <th>Id</th>
+          <th>Cliente</th>
+          <th>Placa</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Color</th>
+          <th>Año</th>
+          <th>Transmision</th>
+          <th></th>
+        </thead>
+
+        {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+        <tr>
+          <td>123</td>
+          <td>{{obj}}</td>
+          <td>1114-placa</td>
+          <td>351-152-0609</td>
+          <td>{{obj}}@gmial.com</td>
+          <td>gris</td>
+          <td>2020</td>
+          <td>automatico</td>
+          <td>
+            <a href="/formularioAutos">
+              <button class="boton-icono-only">
+                <img
+                class="icon-auto"
+                src="{{url_for('static',filename='images/editar.png')}}"
+              />
+              </button>              
+            </a>
+            <a>
+              <button class="boton-icono-only">
+                <img
+                class="icon-auto"
+                src="{{url_for('static',filename='images/eliminar.png')}}"
+              />
+              </button>              
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section>
+    
+  </body>
+</html>

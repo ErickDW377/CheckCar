@@ -1,33 +1,193 @@
 .encabezado{
-    background-color:rgb(0, 0, 0);
-    color: white;
-    font-size: 70px;
-    font-family: fantasy;
+    background-color: black;
     text-align: center;
 }
-
-
-
-.icono{
-    float: right;
-    width: 64px;
-    height: 64px; 
-    padding: 10px;  
+.txt-encabezado{   
+    color: white;
+    font-size: 100px;
+    font-family: fantasy;     
+}
+.txt-encabezado2{   
+    color: black;
+    font-size: 40px;
+    font-family: fantasy;     
+}
+.fondo{
+    background-image: url(../images/fondo.jpg);
+    background-size: cover;       
 }
 
+
+
+/* Menu */
 .menu{
     background-color:rgba(255, 255, 255, 0.815);    
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 10px;
+    font-size: 20px;    
+    text-align: center;
+    margin-top: 20px;  
 }
 
-nav a{
-    color: black;
-    text-decoration: none;    
+
+/* alineacion */
+.slot-start{
+    float: left;
+}
+.slot-end{
+    float: right;      
+}
+.slot-center{
+    text-align: center;    
 }
 
+
+/* iconos-tamaños */
+.icon-sm{
+    width: 32px;
+    height: 32px;
+}
+.icon-m{
+    width: 48px;
+    height: 48px;
+}
+.icon-g{
+    width: 64px;
+    height: 64px;
+}
+.icon-xg{
+    width: 128px;
+    height: 128px;
+}
+.icon-xxg{
+    width: 200px;
+    height: 200px;
+}
+.icon-auto{
+    min-width: 40px;
+    min-height: 40px;
+    width: 100%;
+    height: 100%;
+}
+
+/* padding */
+.padding{
+    padding: 10px;       
+}
+.padding-sm{
+    padding: 5px;
+}
+.padding-m{
+    padding: 27px;    
+}
+.padding-g{
+    padding: 40px;
+}
+.padding-center{
+    padding-top: 15px;
+    padding-bottom:15px ;    
+}
+.alineacion{
+    margin-top: 30px;
+    margin-left: 10%;    
+}
+
+
+
+/* formularios */
+.form{
+    min-width: 300px;
+    width: 25%;
+    height: auto;
+    background: rgba(0, 0, 0, 0.226);
+    margin: auto;
+    margin-top: 40px;    
+    padding: 20px 30px;
+    border-top: 8px solid #005679;
+    border-bottom: 8px solid #005679;
+    font-family: fantasy;
+    font-size: 34px;       
+}
+.boton-icono{
+    border: none;
+    background-color: transparent;
+    float: left;      
+    font-size: 18px;
+    color: black;   
+}
+.boton-icono:hover, .boton-icono-only:hover{    
+    background-color: rgba(102, 102, 102, 0.24) ;         
+}
+.boton-icono-only{
+    border-radius: 30px;    
+    border: none;
+    padding-top: 5px;
+    background-color:transparent;
+     
+}
+
+
+
+/* color */
+.color-danger{
+    background-color:#f44242;
+}
+.color-danger:hover{
+    background-color:#eb0808fd;
+}
+
+
+
+/* Propiedades directas a etiquetas */
+input{
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 24px; 
+}
+input[type=radio]{
+    width: 25px;
+    height: 25px;
+    font-size: medium;  
+}
+a{
+    font-family: Arial, Helvetica, sans-serif;    
+    text-decoration: none;
+    color: black;      
+}
 a:hover{
-    color: rgb(0, 162, 226);
-} 
+    color: #1a73e8;
+}
+
+td,th{
+   border-bottom: 2.5px solid #999;   
+   padding-right: 25px;
+}
+table{        
+    text-align: left;
+    border-collapse: collapse;
+    margin: auto auto;
+    font-size: 150%;      
+}
+button{    
+    border-radius: 0.15cm;
+    border: none;    
+    color: white;    
+    font-size: medium;
+    background-color:#4285f4;
+}
+button:hover{
+    background-color:#085febfd;
+}
+form button{
+    width: 100%;
+    height: 50px;
+}
+
+form div{
+    padding: 5px;
+}
+
+
+
 
