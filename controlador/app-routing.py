@@ -24,7 +24,11 @@ def servicios():
 
 @app.route('/formularioServicios')
 def formularioServicios():    
-    return  render_template('servicios/servicios-formulario.html')  
+    return  render_template('servicios/servicios-formulario.html')
+
+@app.route('/detallesServicios')
+def detallesServicios():    
+    return  render_template('servicios/servicios-detalles.html') 
 
 if __name__=='__main__':
     app.run(debug=True)
