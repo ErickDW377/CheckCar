@@ -15,10 +15,16 @@ def autos():
     return  render_template('autos/autos.html')    
 
 @app.route('/formularioAutos')
-def registrarAuto():    
+def formularioAutos():    
     return  render_template('autos/autos-formulario.html')  
 
-  
+@app.route('/servicios')
+def servicios():    
+    return  render_template('servicios/servicios.html') 
+
+@app.route('/formularioServicios')
+def formularioServicios():    
+    return  render_template('servicios/servicios-formulario.html')  
 
 if __name__=='__main__':
     app.run(debug=True)

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CHECK CAR </title>
+    <link
+      href="{{url_for('static',filename='css/estilos-globales.css')}}"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="encabezado txt-encabezado">Servicios</header>
+    <nav class="menu">
+      <label class="padding"><a href="/"> Inicio </a></label>            
+      <label class="padding"><a href=""> Clientes </a></label>
+      <label class="padding"><a href="/autos"> Autos </a></label>
+      <label class="padding"><a href="/servicios"> Servicios </a></label>
+      <label class="padding"><a href=""> Mecanicos </a></label>
+      <label class="padding"><a href=""> Productos </a></label>                
+  </nav>
+    <section class="padding-m txt-encabezado">
+      <label">
+        <img
+        class="slot-start padding icon-xxg"
+        src="{{url_for('static',filename='images/servicios.png')}}"
+      />
+      </label>      
+    <label class="padding-sm">
+        <a href="/formularioServicios">
+            <button  class="boton-icono alineacion">
+                <img src="{{url_for('static',filename='images/registrar.png')}}" />
+                <label class="slot-end padding-center"> Registrar servicio </label>
+            </button>
+        </a>        
+    </label>
+      
+    </section>
+
+    <section class="slot-center padding-g">
+      <h2 class="txt-encabezado2">Listado de servicios</h2>
+      <table>
+        <thead class="slot-center">
+          <th>Id</th>
+          <th>Auto</th>
+          <th>Tipo</th>
+          <th>Llegada</th>
+          <th>Salida</th>
+          <th>Problemas</th>
+          <th>Avances</th>
+          <th>Garantia</th>
+          <th>Estatus</th>
+          <th>Detalles</th>
+          <th>Mano de obra</th>
+          <th>Total</th>
+          <th></th>
+        </thead>
+
+        {%for obj in ['Nissan Civic 2020', 'Volkswagen Jetta 2001 ', 'Toyota Yaris 2019', 'Volkswagen Golf 2001 ']%}
+        <tr>
+          <td>123</td>
+          <td>{{obj}}</td>
+          <td>Servicio mayor</td>
+          <td>24/10/21</td>
+          <td> </td>
+          <td>Nececita servicio</td>
+          <td> </td>
+          <td>30</td>
+          <td>pendiente</td>
+          <td> </td>
+          <td>$ </td>
+          <td>$ </td>
+          <td>
+            <a href="/formularioServicios">
+              <button class="boton-icono-only">
+                <img
+                class="icon-auto"
+                src="{{url_for('static',filename='images/editar.png')}}"
+              />
+              </button>       
+            <a>
+              <button class="boton-icono-only">
+                <img
+                class="icon-auto"
+                src="{{url_for('static',filename='images/eliminar.png')}}"
+              />
+              </button>              
+            </a>
+            
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section>
+    
+  </body>
+</html>
