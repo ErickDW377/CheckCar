@@ -142,6 +142,61 @@
 
 
 
+
+/* Propiedades personalizadas */
+.contenedor{
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin: auto;
+    padding: 60px 0; 
+    font-family: 'Open Sans', sans-serif;     
+}
+.contenedor h2{    
+    text-align: center;
+    font-size: 200%;
+}
+.contenedor-columnas{
+    width: 100%;    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;       
+}
+.contenedor-columna{    
+    width: 25%;
+    height: 100%;   
+    margin-bottom: 20px;
+}
+.contenedor-renglon{    
+    width: 80%;    
+    display: inline-block;  
+}
+.contenedor-renglon h3{     
+    text-align: center;
+    font-size: 150%;
+    font-weight: bold;    
+}
+.contenedor-renglon p{       
+    font-size: 130%;
+    text-align: justify;
+}
+.contenedor-columna img{    
+    display: block;
+    margin: auto;
+    width: 70%;
+}
+.listar{        
+    display: inline-block;
+    border-radius: 50%;
+    background-color: black;    
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+  
+}
+
+
 /* Propiedades directas a etiquetas */
 input{
     width: 100%;
@@ -202,6 +257,17 @@ textarea {
     border: none;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 24px;
+}
+footer{
+    background-color: #8aa8d0;    
+    display: flex;
+    justify-content: space-between;   
+    flex-wrap: wrap;
+    padding: 10px 0;   
+}
+footer div{     
+   margin: 0 50px;
+   font-family: Arial, Helvetica, sans-serif;
 }
 
 

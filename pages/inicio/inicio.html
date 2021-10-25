@@ -5,32 +5,77 @@
     <meta charset="UTF-8">
     <title>CHECK CAR </title>
     <link href="inicio.css" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet">    
-    
+    <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet">
+
 </head>
 
 <body>
-    <header >        
-        <div class="encabezado">            
-            <label class="txt-encabezado"> CHECK CAR </label>            
-            <label class=" slot-end padding-m" >
-                <a href="/login"><img   class="icon-g " src="{{url_for('static',filename='images/login.png')}}"></a> </a>
-            </label>             
-            
-                        
-        </div>
+    <header>
+        <div class="encabezado">
+            <label class="txt-encabezado"> CHECK CAR </label>
+            <label class=" slot-end padding-m">
+                <a href="/login"><img class="icon-g " src="{{url_for('static',filename='images/login.png')}}"></a> </a>
+            </label>
 
-        <nav class="menu"> 
-            <label class="padding"><a href="/"> Inicio </a></label>       
+
+        </div>
+        <nav class="menu">
+            <label class="padding"><a href="/"> Inicio </a></label>
             <label class="padding"><a href=""> Clientes </a></label>
             <label class="padding"><a href="/autos"> Autos </a></label>
             <label class="padding"><a href="/servicios"> Servicios </a></label>
             <label class="padding"><a href=""> Mecanicos </a></label>
-            <label class="padding"><a href=""> Productos </a></label>                     
+            <label class="padding"><a href=""> Productos </a></label>
         </nav>
     </header>
 
-
-
-
+    <main>
+        <section class="contenedor">
+            <h2>Nuestros Servicios</h2>
+            <div class="contenedor-columnas">
+                <div class="contenedor-columna">
+                    <img src="{{url_for('static',filename='images/servicio-menor.png')}}">
+                    <div class="contenedor-renglon">
+                        <h3>Servicios Menor</h3>
+                        <p> <span class="listar"></span> Cambio de aceite </p>
+                        <p> <span class="listar"></span> Cambio de filtro de aire</p>
+                        <p> <span class="listar"></span> Cambio filtro de aceite</p>
+                    </div>
+                </div>
+                <div class="contenedor-columna">
+                    <img src="{{url_for('static',filename='images/servicio-mayor.png')}}">
+                    <div class="contenedor-renglon">
+                        <h3>Servicios Mayor</h3>
+                        <p> <span class="listar"></span> Cambio de aceite </p>
+                        <p> <span class="listar"></span> Cambio de bujias</p>
+                        <p> <span class="listar"></span> Cambio de filtro de aire</p>
+                        <p> <span class="listar"></span> Cambio de filtro de gasolina</p>
+                        <p> <span class="listar"></span> Cambio filtro de aceite</p>
+                    </div>
+                </div>
+                <div class="contenedor-columna">
+                    <img src="{{url_for('static',filename='images/servicio-analisis.png')}}">
+                    <div class="contenedor-renglon">
+                        <h3>Servicio de diagnostico</h3>
+                        <p>Trae tu auto y le hacemos un analisis profecional y completo</p>
+                    </div>
+                </div>
+                <div class="contenedor-columna">
+                    <img src="{{url_for('static',filename='images/servicio-especializado.png')}}">
+                    <div class="contenedor-renglon">
+                        <h3>Servicios especializados</h3>
+                        <p>Si requieres de alguna reparacion especifica puedes confiar en nosotros</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div>
+            <h2>Contacto</h2>
+            <p>Direccion: direccion del taller</p>
+            <p>Telefono: 351-162-0570</p>
+            <p>email: taller@gmail.com</p>
+        </div>
+    </footer>
 </body>
