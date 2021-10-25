@@ -186,13 +186,14 @@
     margin: auto;
     width: 70%;
 }
-.listar{        
+.listar{ 
+       
     display: inline-block;
     border-radius: 50%;
     background-color: black;    
     width: 10px;
     height: 10px;
-    margin: 2px;
+    margin: 3px;
   
 }
 
@@ -263,7 +264,7 @@ footer{
     display: flex;
     justify-content: space-between;   
     flex-wrap: wrap;
-    padding: 10px 0;   
+    padding: 8px 0;   
 }
 footer div{     
    margin: 0 50px;
