@@ -28,7 +28,16 @@ def formularioServicios():
 
 @app.route('/detallesServicios')
 def detallesServicios():    
-    return  render_template('servicios/servicios-detalles.html') 
+    return  render_template('servicios/servicios-detalles.html')
+
+@app.route('/mecanicos')
+def mecanicos():    
+    return  render_template('mecanicos/mecanicos.html')
+
+@app.route('/formularioMecanicos')
+def formularioMecanicos():    
+    return  render_template('mecanicos/mecanicos-formulario.html')
+
 
 if __name__=='__main__':
     app.run(debug=True)

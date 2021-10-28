@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>CHECK CAR </title>
-    <link
-      href="{{url_for('static',filename='css/estilos-globales.css')}}"
-      rel="stylesheet"
-    />
-  </head>
-
-  <body>
-    <header class="encabezado txt-encabezado">Servicios</header>
-    <nav class="menu">
-      <label class="padding"><a href="/"> Inicio </a></label>            
-      <label class="padding"><a href=""> Clientes </a></label>
-      <label class="padding"><a href="/autos"> Autos </a></label>
-      <label class="padding"><a href="/servicios"> Servicios </a></label>
-      <label class="padding"><a href=""> Mecanicos </a></label>
-      <label class="padding"><a href=""> Productos </a></label>                
-  </nav>
+{% extends 'componentes/paginaMenu.html' %}
+{%block encabezado%}
+  <div class="encabezado txt-encabezado">
+    Servicios  
+  </div>
+{%endblock%}   
+{%block cuerpo%}
     <section class="padding-m txt-encabezado">
       <label">
         <img
@@ -101,6 +87,6 @@
         {% endfor %}
       </table>
     </section>
-    
-  </body>
-</html>
+{%endblock%}  
+
+

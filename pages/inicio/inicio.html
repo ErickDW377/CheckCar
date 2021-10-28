@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>CHECK CAR </title>
-    <link href="inicio.css" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet">
-
-</head>
-
-<body>
-    <header>
-        <div class="encabezado">
-            <label class="txt-encabezado"> CHECK CAR </label>
-            <label class=" slot-end padding-m">
-                <a href="/login"><img class="icon-g " src="{{url_for('static',filename='images/login.png')}}"></a> </a>
-            </label>
-
-
-        </div>
-        <nav class="menu">
-            <label class="padding"><a href="/"> Inicio </a></label>
-            <label class="padding"><a href=""> Clientes </a></label>
-            <label class="padding"><a href="/autos"> Autos </a></label>
-            <label class="padding"><a href="/servicios"> Servicios </a></label>
-            <label class="padding"><a href=""> Mecanicos </a></label>
-            <label class="padding"><a href=""> Productos </a></label>
-        </nav>
-    </header>
-
+{% extends 'componentes/paginaMenu.html' %}
+{%block encabezado%}
+    <div class="encabezado txt-encabezado">
+        CHECK CAR
+        <label class=" slot-end margenes-D">
+            <a href="/login"><img class="icon-g " src="{{url_for('static',filename='images/login.png')}}"></a> </a>
+        </label>
+    </div>
+{%endblock%}
+{%block cuerpo%}
     <main>
         <section class="contenedor">
             <h2>Nuestros Servicios</h2>
@@ -78,4 +57,8 @@
             <p>email: taller@gmail.com</p>
         </div>
     </footer>
-</body>
+{%endblock%}
+        
+
+    
+    
