@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <header class="encabezado txt-encabezado">Autos</header>
+    <header class="encabezado txt-encabezado">Productos</header>
     <nav class="menu">
       <label class="padding"><a href="/"> Inicio </a></label>            
       <label class="padding"><a href="/clientes"> Clientes </a></label>
@@ -23,14 +23,14 @@
       <label">
         <img
         class="slot-start padding icon-xxg"
-        src="{{url_for('static',filename='images/autos.png')}}"
+        src="{{url_for('static',filename='images/Producto.jpg')}}"
       />
       </label>      
     <label class="padding-sm">
-        <a href="/formularioAutos">
+        <a href="/formularioProductos">
             <button  class="boton-icono alineacion">
                 <img src="{{url_for('static',filename='images/registrar.png')}}" />
-                <label class="slot-end padding-center"> Registrar auto </label>
+                <label class="slot-end padding-center"> Registrar Producto </label>
             </button>
         </a>        
     </label>
@@ -38,47 +38,45 @@
     </section>
 
     <section class="slot-center padding-g">
-      <h2 class="txt-encabezado2">Listado de autos</h2>
+      <h2 class="txt-encabezado2">Listado de Productos</h2>
       <table>
         <thead class="slot-center">
           <th>Id</th>
-          <th>Cliente</th>
-          <th>Placa</th>
+          <th> Producto</th>
           <th>Marca</th>
           <th>Modelo</th>
-          <th>Color</th>
-          <th>Año</th>
-          <th>Transmision</th>
+          <th>Tipo</th>
+          <th>Anaquel</th>
+          <th>Estante</th>
+          <th>Costo</th>
+          <th>Precio</th>
+          <th>Descripcion</th>
+          <th>Unidades</th>
           <th></th>
         </thead>
 
-        {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+        {%for obj in ['Filtro de gas', 'Focos', 'Aceites', 'Bujias']%}
         <tr>
-          <td>123</td>
+          <td>111</td>
           <td>{{obj}}</td>
-          <td>1114-placa</td>
-          <td>351-152-0609</td>
-          <td>{{obj}}@gmial.com</td>
-          <td>gris</td>
-          <td>2020</td>
-          <td>automatico</td>
+          <td>Mobil</td>
+          <td>Extengine</td>
+          <td>{{obj}}Semi-sintetico</td>
+          <td>Urrea</td>
+          <td>Mikel's</td>
+          <td>$500</td>
+          <td>$500</td>
+          <td>Gran tamaño</td>
+          <td>1</td>
+        
           <td>
-            <a href="/formularioAutos">
+            <a href="/formularioProductos">
               <button class="boton-icono-only">
                 <img
                 class="icon-auto"
                 src="{{url_for('static',filename='images/editar.png')}}"
               />
               </button>              
-            </a>
-            <a href="/servicios">
-              <button class="boton-icono-only">
-                <img
-                class="icon-auto"
-                src="{{url_for('static',filename='images/servicios-icono.png')}}"
-              />
-              </button>              
-            </a>
             <a>
               <button class="boton-icono-only">
                 <img
