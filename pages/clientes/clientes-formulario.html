@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CHECK CAR </title>
+    <link
+      href="{{url_for('static',filename='css/estilos-globales.css')}}"
+      rel="stylesheet"
+    />
+  </head>
+  </head>
+
+  <body class="fondo">
+    <header class="encabezado txt-encabezado">Clientes</header>
+    <form class="form" action="/clientes" >
+      
+      <div>
+        <label>Id Cliente:</label>
+        <input type="number"  placeholder="id Cliente" name="id"  required  />
+      </div>
+
+      <div>
+        <label>Usuario:</label>
+        <input type="text"  placeholder="Usuario" name="Nombre de Usuario"  required  />
+      </div>
+
+      <div>
+        <label>Contraseña:</label>
+        <input type="password"  placeholder="password" name="password"  required  />
+      </div>
+
+      <div>
+        <label>Empresa:</label>
+        <input type="text"  placeholder="Empresa" name="Empresa"  />
+      </div>
+
+      <div>
+        <label>Nombre:</label>
+        <input type="text"  placeholder="Nombre" name="Nombre" required />
+      </div>
+
+      <div>
+        <label>Apellido Paterno:</label>
+        <input type="text"  placeholder="Apellido Paterno" name="Apellido Paterno" required  />
+      </div>
+
+       <div>
+        <label>Apellido Materno:</label>
+        <input type="text"  placeholder="Apellido Materno" name="Apellido Materno" required  />
+      </div>
+      <div>
+        <label>Telefono:</label>
+        <input type="number"  placeholder=" telefono" name="Numero de telefono" required  />
+       </div>
+
+       <div>
+        <label>Email:</label>
+        <input type="text"  placeholder="Email" name="Email" />
+       </div>
+
+      <div>
+        <label>Calle:</label>
+        <input type="text"  placeholder="Calle" name="Calle"  />
+      </div>
+
+      <div>
+        <label>Numero Esterior:</label>
+        <input type="number"  placeholder="numExt" name="numExt" />
+      </div>
+
+        <div>
+        <label>Numero Interior :</label>
+        <input type="number"  placeholder="numInt" name="numInt"  />
+       </div>
+
+       <div>
+        <label>Colonia:</label>
+        <input type="text"  placeholder="Colonia" name="Colonia" />
+       </div>
+
+        <div>
+        <label>Municipio:</label>
+        <input type="text"  placeholder="Municipio" name="Municipio" />
+       </div>
+
+       <div>
+        <label>Estado:</label>
+        <input type="text"  placeholder="Estado" name="Estado"  />
+       </div>
+
+       <div>
+        <label>Codigo Postal:</label>
+        <input type="number"  placeholder="cp" name="cp"  />
+       </div>
+
+      <div>
+          <button type="submit"> Guardar </button>
+      </div>
+      <div>
+        <a href="/clientes">
+            <button class="color-danger" type="button">Cancelar</button>
+        </a>
+      </div>
+
+
+    </form>
+
+
+  </body>
+</html>

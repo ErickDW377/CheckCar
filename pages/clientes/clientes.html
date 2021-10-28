@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CHECK CAR </title>
+    <link
+      href="{{url_for('static',filename='css/estilos-globales.css')}}"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="encabezado txt-encabezado">Clientes</header>
+    <nav class="menu">
+      <label class="padding"><a href="/"> Inicio </a></label>            
+      <label class="padding"><a href="/clientes"> Clientes </a></label>
+      <label class="padding"><a href="/autos"> Autos </a></label>
+      <label class="padding"><a href="/servicios"> Servicios </a></label>
+      <label class="padding"><a href="/mecanicos"> Mecanicos </a></label>
+      <label class="padding"><a href="/productos"> Productos </a></label>
+  </nav>
+    <section class="padding-m txt-encabezado">
+      <label">
+        <img
+        class="slot-start padding icon-xxg"
+        src="{{url_for('static',filename='images/Clientes.png')}}"
+      />
+      </label>      
+    <label class="padding-sm">
+        <a href="/formularioClientes">
+            <button  class="boton-icono alineacion">
+                <img src="{{url_for('static',filename='images/registrar.png')}}" />
+                <label class="slot-end padding-center"> Registrar Clientes </label>
+            </button>
+        </a>        
+    </label>
+      
+    </section>
+
+    <section class="slot-center padding-g">
+      <h2 class="txt-encabezado2">Listado de clientes</h2>
+      <table>
+        <thead class="slot-center">
+          <th>Id</th>
+          <th>Nombre </th>
+          <th>Empresa</th>
+          <th>Telefono</th>
+          <th>Email</th>
+          <th>Calle</th>
+          <th>NumExt</th>
+          <th>NumInt</th>
+          <th>Colonia</th>
+          <th>Municipio</th>
+          <th>Estado</th>
+          <th>Cp</th>
+          <th></th>
+        </thead>
+
+        {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+        <tr>
+          <td>123</td>
+          <td>{{obj}}</td>
+          <td>HP</td>
+          <td>351-152-0609</td>
+          <td>{{obj}}@gmial.com</td>
+          <td>Escaramuza</td>
+          <td>#20</td>
+          <td>#20</td>
+          <td>Monte Bello</td>
+          <td>Zamora</td>
+          <td>Michoacan</td>
+          <td>105936</td>
+          <td>
+            <a href="/formularioClientes">
+              <button class="boton-icono-only">
+                <img
+                class="icon-auto"
+                src="{{url_for('static',filename='images/editar.png')}}"
+              />
+              </button>              
+            <a>
+              <button class="boton-icono-only">
+                <img
+                class="icon-auto"
+                src="{{url_for('static',filename='images/eliminar.png')}}"
+              />
+              </button>              
+            </a>
+            
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section>
+    
+  </body>
+</html>

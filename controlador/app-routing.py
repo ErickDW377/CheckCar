@@ -39,5 +39,22 @@ def formularioMecanicos():
     return  render_template('mecanicos/mecanicos-formulario.html')
 
 
+@app.route('/formularioClientes')
+def formularioCliente():    
+    return  render_template('clientes/clientes-formulario.html') 
+
+@app.route('/clientes')
+def clientes():    
+    return  render_template('clientes/clientes.html') 
+
+@app.route('/formularioProductos')
+def formularioProductos():    
+    return  render_template('productos/productos-formularios.html') 
+
+@app.route('/productos')
+def productos():    
+    return  render_template('productos/productos.html') 
+
+
 if __name__=='__main__':
     app.run(debug=True)
