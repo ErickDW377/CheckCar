@@ -6,22 +6,21 @@
 {%endblock%}
 {%block cuerpo%}
 
-<section class="padding-m txt-encabezado">
-  <label">
-    <img class="slot-start padding icon-xxg" src="{{url_for('static',filename='images/clientes.png')}}" />
-    </label>
-    <label class="padding-sm">
-      <a href="/formularioClientes">
-        <button class="boton-icono alineacion">
-          <img src="{{url_for('static',filename='images/registrar.png')}}" />
-          <label class="slot-end padding-center"> Registrar Clientes </label>
-        </button>
-      </a>
-    </label>
-
+<section class="contenedor">
+  <div class="slot-start padding">
+    <img  src="{{url_for('static',filename='images/clientes.png')}}" />
+  </div>
+  <div class="alineacion">
+    <a href="/formularioClientes">
+      <button class="boton-icono">
+        <img src="{{url_for('static',filename='images/registrar.png')}}" />
+        <label class="slot-end padding-center"> Registrar Clientes </label>
+      </button>
+    </a>
+  </div>
 </section>
 
-<section class="slot-center padding-g">
+<section class="slot-center padding-ch">
   <h2 class="txt-encabezado2">Listado de clientes</h2>
   <table>
     <thead class="slot-center">
@@ -37,6 +36,8 @@
       <th>Municipio</th>
       <th>Estado</th>
       <th>Cp</th>
+      <th></th>
+      <th></th>
       <th></th>
     </thead>
 
@@ -59,17 +60,21 @@
           <button class="boton-icono-only">
             <img class="icon-auto" src="{{url_for('static',filename='images/editar.png')}}" />
           </button>
-          <a>
-            <a href="/autos">
-              <button class="boton-icono-only">
-                <img class="icon-auto" src="{{url_for('static',filename='images/autos-icono.png')}}" />
-              </button>
-              <a>
-                <button class="boton-icono-only">
-                  <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
-                </button>
-              </a>
-
+        </a>
+      </td>
+      <td>
+        <a href="/autos">
+          <button class="boton-icono-only">
+            <img class="icon-auto" src="{{url_for('static',filename='images/autos-icono.png')}}" />
+          </button>
+        </a>
+      </td>
+      <td>
+        <a>
+          <button class="boton-icono-only">
+            <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
+          </button>
+        </a>        
       </td>
     </tr>
     {% endfor %}

@@ -1,89 +1,81 @@
-{% extends 'componentes/paginaMenu.html' %}
-{%block encabezado%}
-  <div class="encabezado txt-encabezado">
-    Mecánicos  
+{% extends 'componentes/paginaMenu.html' %} {%block encabezado%}
+<div class="encabezado txt-encabezado">Mecánicos</div>
+{%endblock%} {%block cuerpo%}
+
+<section class="contenedor">
+  <div class="slot-start padding">
+    <img src="{{url_for('static',filename='images/mecanicos.png')}}" />
   </div>
-{%endblock%}   
-{%block cuerpo%} 
-    
- 
-    <section class="padding-m txt-encabezado">
-      <label">
-        <img
-        class="slot-start padding icon-xxg"
-        src="{{url_for('static',filename='images/mecanicos.png')}}"
-      />
-      </label>      
-    <label class="padding-sm">
+  <div class="alineacion">
+    <a href="/formularioMecanicos">
+      <button class="boton-icono">
+        <img src="{{url_for('static',filename='images/registrar.png')}}" />
+        <label class="slot-end padding-center"> Registrar mecánico </label>
+      </button>
+    </a>
+  </div>
+</section>
+
+<section class="slot-center padding-ch">
+  <h2 class="txt-encabezado2">Listado de mecánicos</h2>
+  <table>
+    <thead class="slot-center">
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Nacimiento</th>
+      <th>Sexo</th>
+      <th>Telefono</th>
+      <th>Domicilio</th>
+      <th>Colonia</th>
+      <th>Municipio</th>
+      <th>Estado</th>
+      <th>CP</th>
+      <th>Contratación</th>
+      <th>Puesto</th>
+      <th>NSS</th>
+      <th>RFC</th>
+      <th></th>
+      <th></th>
+    </thead>
+
+    {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+    <tr>
+      <td>123</td>
+      <td>{{obj}}</td>
+      <td>11-04-00</td>
+      <td>M</td>
+      <td>351-152-0609</td>
+      <td>Domicilio de {{obj}}</td>
+      <td>Colonia de {{obj}}</td>
+      <td>Municipio de {{obj}}</td>
+      <td>Estado de {{obj}}</td>
+      <td>CP de {{obj}}</td>
+      <td>Contratado el dia...</td>
+      <td>Mecanico {{obj}}</td>
+      <td>NSS {{obj}}</td>
+      <td>RFC {{obj}}</td>
+      <td>
         <a href="/formularioMecanicos">
-            <button  class="boton-icono alineacion">
-                <img src="{{url_for('static',filename='images/registrar.png')}}" />
-                <label class="slot-end padding-center"> Registrar mecánico </label>
-            </button>
+          <button class="boton-icono-only">
+            <img
+              class="icon-auto"
+              src="{{url_for('static',filename='images/editar.png')}}"
+            />
+          </button>
         </a>        
-    </label>
-      
-    </section>
-
-    <section class="slot-center padding-g">
-      <h2 class="txt-encabezado2">Listado de mecánicos</h2>
-      <table>
-        <thead class="slot-center">
-          <th>Id</th>
-          <th>Nombre</th>
-          <th>Nacimiento</th>
-          <th>Sexo</th>
-          <th>Telefono</th>
-          <th>Domicilio</th>
-          <th>Colonia</th>
-          <th>Municipio</th>
-          <th>Estado</th>
-          <th>CP</th>
-          <th>Contratación</th>
-          <th>Puesto</th>
-          <th>NSS</th>
-          <th>RFC</th>
-          <th></th>
-        </thead>
-
-        {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
-        <tr>
-          <td>123</td>
-          <td>{{obj}}</td>
-          <td>11-04-00</td>
-          <td>M</td>
-          <td>351-152-0609</td>
-          <td>Domicilio de {{obj}}</td>
-          <td>Colonia de {{obj}}</td>
-          <td>Municipio de {{obj}} </td>
-          <td>Estado de {{obj}}</td>
-          <td>CP de {{obj}}</td>
-          <td>Contratado el dia...</td>
-          <td>Mecanico {{obj}}</td>
-          <td>NSS {{obj}}</td>
-          <td>RFC {{obj}}</td>
-          <td>
-            <a href="/formularioMecanicos">
-              <button class="boton-icono-only">
-                <img
-                class="icon-auto"
-                src="{{url_for('static',filename='images/editar.png')}}"
-              />
-              </button>              
-            </a>            
-            <a>
-              <button class="boton-icono-only">
-                <img
-                class="icon-auto"
-                src="{{url_for('static',filename='images/eliminar.png')}}"
-              />
-              </button>              
-            </a>
-            
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
-    </section>
-    {%endblock%}      
- 
+      </td>
+      <td>
+        <a>
+          <button class="boton-icono-only">
+            <img
+              class="icon-auto"
+              src="{{url_for('static',filename='images/eliminar.png')}}"
+            />
+          </button>
+        </a>
+      </td>      
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+{%endblock%}

@@ -1,93 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />    
-    <title>CHECK CAR </title>
-    <link
-      href="{{url_for('static',filename='css/estilos-globales.css')}}"
-      rel="stylesheet"
-    />
-  </head>
-  </head>
 
-  <body class="fondo">
-    <header class="encabezado txt-encabezado">Formulario Servicio</header>
-    <form class="form" action="/servicios" >
-      <div>
-        <label>ID:</label>
-        <input type="number"  placeholder="id" name="id" required />
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>CHECK CAR </title>
+  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
+</head>
+</head>
 
-      <div>
-        <label>Auto:</label>
-        <input type="text"  placeholder="Auto" name="auto" required />
-      </div>
+<body class="fondo">
+  <header class="encabezado txt-encabezado">Formulario Servicio</header>
+  <form class="form" action="/servicios">
+    <div>
+      <label>ID:</label>
+      <input type="number" placeholder="id" name="id" required />
+    </div>
 
-      <div>
-        <label>Tipo:</label>
-        <input type="text"  placeholder="Tipo" name="tipo" required />
-      </div>
+    <div>
+      <label>Auto:</label>
+      <input type="text" placeholder="Auto" name="auto" required />
+    </div>
 
-      <div>
-        <label>Llegada:</label>
-        <input type="date"  placeholder="Fecha de llegada" name="llegada" required />
-      </div>
+    <div>
+      <label>Tipo:</label>
+      <input type="text" placeholder="Tipo" name="tipo" required />
+    </div>
 
-      <div>
-        <label>Salida:</label>
-        <input type="date"  placeholder="Fecha de salida" name="salida"/>
-      </div>
+    <div>
+      <label>Llegada:</label>
+      <input type="date" placeholder="Fecha de llegada" name="llegada" required />
+    </div>
 
-      <div>
-        <label>Problemas:</label>
-        <input type="text"  placeholder="Descripción de problema" name="problema" required />
-      </div>
+    <div>
+      <label>Salida:</label>
+      <input type="date" placeholder="Fecha de salida" name="salida" />
+    </div>
 
-      <div>
-        <label>Avance:</label>
-        <input type="text"  placeholder="Descripción de avances" name="color" />
-      </div>
+    <div>
+      <label>Problemas:</label>
+      <input type="text" placeholder="Descripción de problema" name="problema" required />
+    </div>
 
-      <div>
-        <label>Garantia:</label>
-        <input type="number"  placeholder="Dias de garantía" name="garantia" />
-      </div>
-      
-      <div>
-        <label>Estatus:</label>
-        <input type="text"  placeholder="Estatus del servicio" name="garantia" />
-      </div>
+    <div>
+      <label>Avance:</label>
+      <input type="text" placeholder="Descripción de avances" name="color" />
+    </div>
 
-      <div>
-        <label>Detalles:</label>
-        <textarea placeholder="Detalles" name="detalles" cols="7" rows="10"></textarea>
-        <a href="/detallesServicios">
-            <button class="color-verde" type="button">Agregar detalles</button>
-        </a>  
-      </div>
+    <div>
+      <label>Garantia:</label>
+      <input type="number" placeholder="Dias de garantía" name="garantia" />
+    </div>
 
-      <div>
-        <label>Mano de obra:</label>
-        <input type="number"  placeholder="Costo de mano de obra" name="manoObra" />
-      </div>
+    <div>
+      <label>Estatus:</label>
+      <input type="text" placeholder="Estatus del servicio" name="garantia" />
+    </div>
 
-      <div>
-        <label>Total:</label>
-        <input type="number"  placeholder="Costo total" name="total" />
-      </div> 
-      
-      <div>        
-          <button type="submit"> Guardar </button>        
-      </div>
-      <div>
-        <a href="/servicios">
-            <button class="color-danger" type="button">Cancelar</button>
-        </a>        
-      </div>
-      
-       
-    </form>
+    <div>
+      <label>Detalles:</label>
+      <textarea placeholder="Detalles" name="detalles" cols="7" rows="10"></textarea>
+      <a href="/detallesServicios">
+        <button class="color-verde" type="button">Agregar detalles</button>
+      </a>
+    </div>
 
-    
-  </body>
+    <div>
+      <label>Mano de obra:</label>
+      <input type="number" placeholder="Costo de mano de obra" name="manoObra" />
+    </div>
+
+    <div>
+      <label>Total:</label>
+      <input type="number" placeholder="Costo total" name="total" />
+    </div>
+
+    <div>
+      <button type="submit"> Guardar </button>
+    </div>
+    <div>
+      <a href="/servicios">
+        <button class="color-danger" type="button">Cancelar</button>
+      </a>
+    </div>
+
+
+  </form>
+
+
+</body>
+
 </html>

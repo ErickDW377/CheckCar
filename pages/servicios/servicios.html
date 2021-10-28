@@ -1,92 +1,88 @@
-{% extends 'componentes/paginaMenu.html' %}
-{%block encabezado%}
-  <div class="encabezado txt-encabezado">
-    Servicios  
+{% extends 'componentes/paginaMenu.html' %} {%block encabezado%}
+<div class="encabezado txt-encabezado">Servicios</div>
+{%endblock%} {%block cuerpo%}
+<section class="contenedor">
+  <div class="slot-start padding">
+    <img src="{{url_for('static',filename='images/servicios.png')}}" />
   </div>
-{%endblock%}   
-{%block cuerpo%}
-    <section class="padding-m txt-encabezado">
-      <label">
-        <img
-        class="slot-start padding icon-xxg"
-        src="{{url_for('static',filename='images/servicios.png')}}"
-      />
-      </label>      
-    <label class="padding-sm">
+  <div class="alineacion">
+    <a href="/formularioServicios">
+      <button class="boton-icono">
+        <img src="{{url_for('static',filename='images/registrar.png')}}" />
+        <label class="slot-end padding-center"> Registrar servicio </label>
+      </button>
+    </a>
+  </div>
+</section>
+
+<section class="slot-center padding-ch">
+  <h2 class="txt-encabezado2">Listado de servicios</h2>
+  <table>
+    <thead class="slot-center">
+      <th>Id</th>
+      <th>Auto</th>
+      <th>Tipo</th>
+      <th>Llegada</th>
+      <th>Salida</th>
+      <th>Problemas</th>
+      <th>Avances</th>
+      <th>Garantia</th>
+      <th>Estatus</th>
+      <th>Detalles</th>
+      <th>Mano de obra</th>
+      <th>Total</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+
+    {%for obj in ['Nissan Civic 2020', 'Volkswagen Jetta 2001 ', 'Toyota Yaris
+    2019', 'Volkswagen Golf 2001 ']%}
+    <tr>
+      <td>123</td>
+      <td>{{obj}}</td>
+      <td>Servicio mayor</td>
+      <td>24/10/21</td>
+      <td></td>
+      <td>Nececita servicio</td>
+      <td></td>
+      <td>30</td>
+      <td>pendiente</td>
+      <td></td>
+      <td>$</td>
+      <td>$</td>
+      <td>
         <a href="/formularioServicios">
-            <button  class="boton-icono alineacion">
-                <img src="{{url_for('static',filename='images/registrar.png')}}" />
-                <label class="slot-end padding-center"> Registrar servicio </label>
-            </button>
+          <button class="boton-icono-only">
+            <img
+              class="icon-auto"
+              src="{{url_for('static',filename='images/editar.png')}}"
+            />
+          </button>
         </a>        
-    </label>
-      
-    </section>
-
-    <section class="slot-center padding-g">
-      <h2 class="txt-encabezado2">Listado de servicios</h2>
-      <table>
-        <thead class="slot-center">
-          <th>Id</th>
-          <th>Auto</th>
-          <th>Tipo</th>
-          <th>Llegada</th>
-          <th>Salida</th>
-          <th>Problemas</th>
-          <th>Avances</th>
-          <th>Garantia</th>
-          <th>Estatus</th>
-          <th>Detalles</th>
-          <th>Mano de obra</th>
-          <th>Total</th>
-          <th></th>
-        </thead>
-
-        {%for obj in ['Nissan Civic 2020', 'Volkswagen Jetta 2001 ', 'Toyota Yaris 2019', 'Volkswagen Golf 2001 ']%}
-        <tr>
-          <td>123</td>
-          <td>{{obj}}</td>
-          <td>Servicio mayor</td>
-          <td>24/10/21</td>
-          <td> </td>
-          <td>Nececita servicio</td>
-          <td> </td>
-          <td>30</td>
-          <td>pendiente</td>
-          <td> </td>
-          <td>$ </td>
-          <td>$ </td>
-          <td>
-            <a href="/formularioServicios">
-              <button class="boton-icono-only">
-                <img
-                class="icon-auto"
-                src="{{url_for('static',filename='images/editar.png')}}"
-              />
-              </button>
-            </a>
-            <a href="/detallesServicios">
-                <button class="boton-icono-only">
-                  <img
-                  class="icon-auto"
-                  src="{{url_for('static',filename='images/agregarDetalles.png')}}"
-                />
-                </button>              
-            </a>     
-            <a>
-              <button class="boton-icono-only">
-                <img
-                class="icon-auto"
-                src="{{url_for('static',filename='images/eliminar.png')}}"
-              />
-              </button>              
-            </a>            
-            
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
-    </section>
-{%endblock%}  
-
-
+      </td>
+      <td>
+        <a href="/detallesServicios">
+          <button class="boton-icono-only">
+            <img
+              class="icon-auto"
+              src="{{url_for('static',filename='images/agregarDetalles.png')}}"
+            />
+          </button>
+        </a>
+      </td>
+      <td>
+        <a>
+          <button class="boton-icono-only">
+            <img
+              class="icon-auto"
+              src="{{url_for('static',filename='images/eliminar.png')}}"
+            />
+          </button>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+{%endblock%}

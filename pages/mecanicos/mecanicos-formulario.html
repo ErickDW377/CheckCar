@@ -1,111 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />    
-    <title>CHECK CAR </title>
-    <link
-      href="{{url_for('static',filename='css/estilos-globales.css')}}"
-      rel="stylesheet"
-    />
-  </head>
-  </head>
 
-  <body class="fondo">
-    <header class="encabezado txt-encabezado">Formulario mecánicos</header>
-    <form class="form" action="/mecanicos" >
-      <div>
-        <label>ID:</label>
-        <input type="number"  placeholder="id" name="id" required />
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>CHECK CAR </title>
+  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
+</head>
+</head>
 
-      <div>
-        <label>Nombre:</label>
-        <input type="text"  placeholder="Nombre" name="nombre" required />
-      </div>
+<body class="fondo">
+  <header class="encabezado txt-encabezado">Formulario mecánicos</header>
+  <form class="form" action="/mecanicos">
+    <div>
+      <label>ID:</label>
+      <input type="number" placeholder="id" name="id" required />
+    </div>
 
-      <div>
-        <label>Nacimiento:</label>
-        <input type="date"  placeholder="Fecha de nacimiento" name="nacimiento" required />
-      </div>
+    <div>
+      <label>Nombre:</label>
+      <input type="text" placeholder="Nombre" name="nombre" required />
+    </div>
 
-      <div>
-        <fieldset>
-          <legend>Sexo:</legend>
-          <div>
-            <label>
-              <input type="radio" name="sexo" value="Masculino"> M
+    <div>
+      <label>Nacimiento:</label>
+      <input type="date" placeholder="Fecha de nacimiento" name="nacimiento" required />
+    </div>
+
+    <div>
+      <fieldset>
+        <legend>Sexo:</legend>
+        <div>
+          <label>
+            <input type="radio" name="sexo" value="Masculino"> M
           </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="sexo" value="Femenino"> F
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="sexo" value="Femenino"> F
           </label>
-          </div>                    
+        </div>
       </fieldset>
-      </div>
+    </div>
 
-      <div>
-        <label>Telefono:</label>
-        <input type="number"  placeholder="Número de telefono" name="telefono" required />
-      </div>
+    <div>
+      <label>Telefono:</label>
+      <input type="number" placeholder="Número de telefono" name="telefono" required />
+    </div>
 
-      <div>
-        <label>Domicilio:</label>
-        <input type="text"  placeholder="Domicilio" name="domicilio"/>
-      </div>
+    <div>
+      <label>Domicilio:</label>
+      <input type="text" placeholder="Domicilio" name="domicilio" />
+    </div>
 
-      <div>
-        <label>Colonia:</label>
-        <input type="text"  placeholder="Colonia" name="colonia"/>
-      </div>
+    <div>
+      <label>Colonia:</label>
+      <input type="text" placeholder="Colonia" name="colonia" />
+    </div>
 
-      <div>
-        <label>Estado:</label>
-        <input type="text"  placeholder="Estado" name="estado" />
-      </div>
+    <div>
+      <label>Estado:</label>
+      <input type="text" placeholder="Estado" name="estado" />
+    </div>
 
-      <div>
-        <label>Municipio:</label>
-        <input type="text"  placeholder="Municipio" name="municipio" />
-      </div>
+    <div>
+      <label>Municipio:</label>
+      <input type="text" placeholder="Municipio" name="municipio" />
+    </div>
 
-      <div>
-        <label>CP:</label>
-        <input type="number"  placeholder="Código Postal" name="cp" />
-      </div>
+    <div>
+      <label>CP:</label>
+      <input type="number" placeholder="Código Postal" name="cp" />
+    </div>
 
-      <div>
-        <label>Contratación:</label>
-        <input type="date"  placeholder="Fecha de contrato" name="contratacion" required/>
-      </div>
-      
-      <div>
-        <label>Puesto:</label>
-        <input type="text"  placeholder="Puesto" name="puesto" required />
-      </div>
+    <div>
+      <label>Contratación:</label>
+      <input type="date" placeholder="Fecha de contrato" name="contratacion" required />
+    </div>
 
-      <div>
-        <label>NSS:</label>
-        <input type="text"  placeholder="Número de seguro social" name="nss" />
-      </div>
+    <div>
+      <label>Puesto:</label>
+      <input type="text" placeholder="Puesto" name="puesto" required />
+    </div>
 
-      <div>
-        <label>RFC:</label>
-        <input type="text"  placeholder="RFC" name="rfc" />
-      </div>
-      
-      <div>        
-          <button type="submit"> Guardar </button>        
-      </div>
-      <div>
-        <a href="/mecanicos">
-            <button class="color-danger" type="button">Cancelar</button>
-        </a>        
-      </div>
-      
-       
-    </form>
+    <div>
+      <label>NSS:</label>
+      <input type="text" placeholder="Número de seguro social" name="nss" />
+    </div>
 
-    
-  </body>
+    <div>
+      <label>RFC:</label>
+      <input type="text" placeholder="RFC" name="rfc" />
+    </div>
+
+    <div>
+      <button type="submit"> Guardar </button>
+    </div>
+    <div>
+      <a href="/mecanicos">
+        <button class="color-danger" type="button">Cancelar</button>
+      </a>
+    </div>
+
+
+  </form>
+
+
+</body>
+
 </html>

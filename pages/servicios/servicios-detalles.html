@@ -1,65 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />    
-    <title>CHECK CAR </title>
-    <link
-      href="{{url_for('static',filename='css/estilos-globales.css')}}"
-      rel="stylesheet"
-    />
-  </head>
-  </head>
 
-  <body class="fondo">
-    <header class="encabezado txt-encabezado">Detalles Servicio</header>
-    <form class="form" action="/formularioServicios" >
-      <div>
-        <label>Id servicio:</label>
-        <input type="number"  placeholder="id servicio" name="id"  disabled />
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>CHECK CAR </title>
+  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
+</head>
+</head>
 
-      <div>
-        <label>Producto:</label>
-        <input type="text"  placeholder="Producto" name="producto" required />
-      </div>
+<body class="fondo">
+  <header class="encabezado txt-encabezado">Detalles Servicio</header>
+  <form class="form" action="/formularioServicios">
+    <div>
+      <label>Id servicio:</label>
+      <input type="number" placeholder="id servicio" name="id" disabled />
+    </div>
 
-      <div>
-        <label>Cantidad:</label>
-        <input type="number"  placeholder="Cantidad de productos" name="cantidad" required />
-      </div>
+    <div>
+      <label>Producto:</label>
+      <input type="text" placeholder="Producto" name="producto" required />
+    </div>
 
-      <div>
-        <label>Costo:</label>
-        <input type="number"  placeholder="Costo unitario" name="costo" disabled />
-      </div>
+    <div>
+      <label>Cantidad:</label>
+      <input type="number" placeholder="Cantidad de productos" name="cantidad" required />
+    </div>
 
-      <div>
-        <label>Total:</label>
-        <input type="number"  placeholder="Costo total" name="total" disabled />
-      </div>
+    <div>
+      <label>Costo:</label>
+      <input type="number" placeholder="Costo unitario" name="costo" disabled />
+    </div>
 
-      <div>
-        <label>Área de reparación:</label>
-        <input type="text"  placeholder="Área de reparación" name="area" required/>
-      </div>
+    <div>
+      <label>Total:</label>
+      <input type="number" placeholder="Costo total" name="total" disabled />
+    </div>
 
-      <div>
-        <label>Mecanico:</label>
-        <input type="text"  placeholder="Nombre del mecánico" name="mecanico" required />
-      </div>      
-      
-      <div>        
-          <button type="submit"> Guardar </button>        
-      </div>
-      <div>
-        <a href="/formularioServicios">
-            <button class="color-danger" type="button">Cancelar</button>
-        </a>        
-      </div>
-      
-       
-    </form>
+    <div>
+      <label>Área de reparación:</label>
+      <input type="text" placeholder="Área de reparación" name="area" required />
+    </div>
 
-    
-  </body>
+    <div>
+      <label>Mecanico:</label>
+      <input type="text" placeholder="Nombre del mecánico" name="mecanico" required />
+    </div>
+
+    <div>
+      <button type="submit"> Guardar </button>
+    </div>
+    <div>
+      <a href="/formularioServicios">
+        <button class="color-danger" type="button">Cancelar</button>
+      </a>
+    </div>
+
+
+  </form>
+
+
+</body>
+
 </html>

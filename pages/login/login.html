@@ -1,52 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>CHECK CAR</title>
-    <link
-      href="{{url_for('static',filename='css/estilos-globales.css')}}"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body class="fondo">
-    <header class="encabezado txt-encabezado">CHECK CAR</header>
+<head>
+  <meta charset="UTF-8" />
+  <title>CHECK CAR</title>
+  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
+</head>
 
-    <form class="form slot-center" action="/">
-      <div>
-        <img
-          class="icon-xg"
-          src="{{url_for('static',filename='images/login.png')}}"
-        />
-      </div>
-      <div class="padding">
-        <input
-          type="text"
-          name="usuario"
-          id=""
-          placeholder="Usuario"
-          required
-        />
-      </div>
-      <div class="padding">
-        <input
-          type="password"
-          name="password"
-          id=""
-          placeholder="Password"
-          required
-        />
-      </div>
-      <div>
-        <button type="submit">Iniciar sesión</button>
-      </div>
-      <div>
-        <a href="/">
-            <button class="color-danger" type="button">Cancelar</button>
-        </a>        
-      </div>
-      <a style="font-size: small" href="/formularioClientes">¿Cliente nuevo? registrate</a>
-      
-    </form>
-  </body>
+<body class="fondo">
+  <header class="encabezado txt-encabezado">CHECK CAR</header>
+
+  <form class="form slot-center" action="/">
+    <div>
+      <img class="icon-xg" src="{{url_for('static',filename='images/login.png')}}" />
+    </div>
+    <div class="padding">
+      <input type="text" name="usuario" id="" placeholder="Usuario" required />
+    </div>
+    <div class="padding">
+      <input type="password" name="password" id="" placeholder="Password" required />
+    </div>
+    <div>
+      <button type="submit">Iniciar sesión</button>
+    </div>
+    <div>
+      <a href="/">
+        <button class="color-danger" type="button">Cancelar</button>
+      </a>
+    </div>
+    <a style="font-size: small" href="/formularioClientes">¿Cliente nuevo? registrate</a>
+  </form>
+</body>
+
 </html>

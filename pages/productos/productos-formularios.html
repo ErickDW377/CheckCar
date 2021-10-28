@@ -1,86 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>CHECK CAR </title>
-    <link
-      href="{{url_for('static',filename='css/estilos-globales.css')}}"
-      rel="stylesheet"
-    />
-  </head>
-  </head>
 
-  <body class="fondo">
-    <header class="encabezado txt-encabezado">Productos</header>
-    <form class="form" action="/productos" >
-      
-      <div>
-        <label>Id Producto:</label>
-        <input type="number"  placeholder="id Producto" name="id"  required  />
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>CHECK CAR </title>
+  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
+</head>
+</head>
 
-      <div>
-        <label>Nombre Producto:</label>
-        <input type="text"  placeholder="Nombre Producto" name="Nombre Producto"  required  />
-      </div>
+<body class="fondo">
+  <header class="encabezado txt-encabezado">Productos</header>
+  <form class="form" action="/productos">
 
-      <div>
-        <label>Marca:</label>
-        <input type="text"  placeholder="Marca" name="Marca"   />
-      </div>
+    <div>
+      <label>Id Producto:</label>
+      <input type="number" placeholder="id Producto" name="id" required />
+    </div>
 
-      <div>
-        <label>Modelo:</label>
-        <input type="text"  placeholder="Modelo" name="Modelo"  />
-      </div>
+    <div>
+      <label>Nombre Producto:</label>
+      <input type="text" placeholder="Nombre Producto" name="Nombre Producto" required />
+    </div>
 
-      <div>
-        <label>Tipo:</label>
-        <input type="text"  placeholder="Tipo" name="Tipo"  />
-      </div>
+    <div>
+      <label>Marca:</label>
+      <input type="text" placeholder="Marca" name="Marca" />
+    </div>
 
-      <div>
-        <label>Anaquel:</label>
-        <input type="text"  placeholder="Anaquel" name="Anaquel" />
-      </div>
+    <div>
+      <label>Modelo:</label>
+      <input type="text" placeholder="Modelo" name="Modelo" />
+    </div>
 
-       <div>
-        <label>Estante:</label>
-        <input type="text"  placeholder="Estante" name="Estante"  />
-      </div>
-      <div>
-        <label>Costo:</label>
-        <input type="number"  placeholder=" Costo" name="Costo"   />
-       </div>
+    <div>
+      <label>Tipo:</label>
+      <input type="text" placeholder="Tipo" name="Tipo" />
+    </div>
 
-       <div>
-        <label>Precio:</label>
-        <input type="number"  placeholder="Precio" name="Precio" />
-       </div>
+    <div>
+      <label>Anaquel:</label>
+      <input type="text" placeholder="Anaquel" name="Anaquel" />
+    </div>
 
-      <div>
-        <label>Descripcion:</label>
-        <input type="text"  placeholder="Descripcion" name="Descripcion"  />
-      </div>
+    <div>
+      <label>Estante:</label>
+      <input type="text" placeholder="Estante" name="Estante" />
+    </div>
+    <div>
+      <label>Costo:</label>
+      <input type="number" placeholder=" Costo" name="Costo" />
+    </div>
 
-      <div>
-        <label>Unidades:</label>
-        <input type="number"  placeholder="Unidades" name="Unidades" />
-      </div>
+    <div>
+      <label>Precio:</label>
+      <input type="number" placeholder="Precio" name="Precio" />
+    </div>
+
+    <div>
+      <label>Descripcion:</label>
+      <input type="text" placeholder="Descripcion" name="Descripcion" />
+    </div>
+
+    <div>
+      <label>Unidades:</label>
+      <input type="number" placeholder="Unidades" name="Unidades" />
+    </div>
 
 
-      <div>
-          <button type="submit"> Guardar </button>
-      </div>
-      <div>
-        <a href="/productos">
-            <button class="color-danger" type="button">Cancelar</button>
-        </a>
-      </div>
+    <div>
+      <button type="submit"> Guardar </button>
+    </div>
+    <div>
+      <a href="/productos">
+        <button class="color-danger" type="button">Cancelar</button>
+      </a>
+    </div>
 
 
-    </form>
+  </form>
 
 
-  </body>
+</body>
+
 </html>

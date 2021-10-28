@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />    
-    <title>CHECK CAR </title>
-    <link
-      href="{{url_for('static',filename='css/estilos-globales.css')}}"
-      rel="stylesheet"
-    />
-  </head>
-  </head>
 
-  <body class="fondo">
-    <header class="encabezado txt-encabezado">Formulario auto</header>
-    <form class="form" action="/autos" >
-      <div>
-        <label>ID:</label>
-        <input type="number"  placeholder="id" name="id" required />
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>CHECK CAR </title>
+  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
+</head>
+</head>
 
-      <div>
-        <label>Cliente:</label>
-        <input type="text"  placeholder="Nombre del cliente" name="cliente" required />
-      </div>
+<body class="fondo">
+  <header class="encabezado txt-encabezado">Formulario auto</header>
+  <form class="form" action="/autos">
+    <div>
+      <label>ID:</label>
+      <input type="number" placeholder="id" name="id" required />
+    </div>
 
-      <div>
-        <label>Placa:</label>
-        <input type="text"  placeholder="Placa" name="placa" required />
-      </div>
+    <div>
+      <label>Cliente:</label>
+      <input type="text" placeholder="Nombre del cliente" name="cliente" required />
+    </div>
 
-      <div>
-        <label>Marca:</label>
-        <input type="text"  placeholder="Marca" name="marca" required />
-      </div>
+    <div>
+      <label>Placa:</label>
+      <input type="text" placeholder="Placa" name="placa" required />
+    </div>
 
-      <div>
-        <label>Modelo:</label>
-        <input type="text"  placeholder="Modelo" name="modelo" required />
-      </div>
+    <div>
+      <label>Marca:</label>
+      <input type="text" placeholder="Marca" name="marca" required />
+    </div>
 
-      <div>
-        <label>Año:</label>
-        <input type="number"  placeholder="Año" name="año" required />
-      </div>
+    <div>
+      <label>Modelo:</label>
+      <input type="text" placeholder="Modelo" name="modelo" required />
+    </div>
 
-      <div>
-        <label>Color:</label>
-        <input type="text"  placeholder="Color del carro" name="color" />
-      </div>
+    <div>
+      <label>Año:</label>
+      <input type="number" placeholder="Año" name="año" required />
+    </div>
 
-      <div>
-        <fieldset>
-          <legend>Tansmision</legend>
-          <div>
-            <label>
-              <input type="radio" name="transmision" value="Automatico"> Automatico
+    <div>
+      <label>Color:</label>
+      <input type="text" placeholder="Color del carro" name="color" />
+    </div>
+
+    <div>
+      <fieldset>
+        <legend>Tansmision</legend>
+        <div>
+          <label>
+            <input type="radio" name="transmision" value="Automatico"> Automatico
           </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="transmision" value="Manual"> Manual
+        </div>
+        <div>
+          <label>
+            <input type="radio" name="transmision" value="Manual"> Manual
           </label>
-          </div>                    
+        </div>
       </fieldset>
-      </div>      
-      
-      <div>        
-          <button type="submit"> Guardar </button>        
-      </div>
-      <div>
-        <a href="/autos">
-            <button class="color-danger" type="button">Cancelar</button>
-        </a>        
-      </div>
-      
-       
-    </form>
+    </div>
 
-    
-  </body>
+    <div>
+      <button type="submit"> Guardar </button>
+    </div>
+    <div>
+      <a href="/autos">
+        <button class="color-danger" type="button">Cancelar</button>
+      </a>
+    </div>
+
+
+  </form>
+
+
+</body>
+
 </html>

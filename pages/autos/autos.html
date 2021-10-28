@@ -1,85 +1,75 @@
 {% extends 'componentes/paginaMenu.html' %}
 {%block encabezado%}
-  <div class="encabezado txt-encabezado">
-    Autos  
-  </div>
-{%endblock%}   
-{%block cuerpo%}
-  <section class="padding-m txt-encabezado">
-    <label">
-      <img
-      class="slot-start padding icon-xxg"
-      src="{{url_for('static',filename='images/autos.png')}}"
-    />
-    </label>      
-  <label class="padding-sm">
-      <a href="/formularioAutos">
-          <button  class="boton-icono alineacion">
-              <img src="{{url_for('static',filename='images/registrar.png')}}" />
-              <label class="slot-end padding-center"> Registrar auto </label>
-          </button>
-      </a>        
-  </label>
-    
-  </section>
-
-  <section class="slot-center padding-g">
-    <h2 class="txt-encabezado2">Listado de autos</h2>
-    <table>
-      <thead class="slot-center">
-        <th>Id</th>
-        <th>Cliente</th>
-        <th>Placa</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Color</th>
-        <th>Año</th>
-        <th>Transmision</th>
-        <th></th>
-      </thead>
-
-      {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
-      <tr>
-        <td>123</td>
-        <td>{{obj}}</td>
-        <td>1114-placa</td>
-        <td>Marca-</td>
-        <td>Modelo</td>
-        <td>gris</td>
-        <td>2020</td>
-        <td>automatico</td>
-        <td>
-          <a href="/formularioAutos">
-            <button class="boton-icono-only">
-              <img
-              class="icon-auto"
-              src="{{url_for('static',filename='images/editar.png')}}"
-            />
-            </button>              
-          </a>
-          <a href="/servicios">
-            <button class="boton-icono-only">
-              <img
-              class="icon-auto"
-              src="{{url_for('static',filename='images/servicios-icono.png')}}"
-            />
-            </button>              
-          </a>
-          <a>
-            <button class="boton-icono-only">
-              <img
-              class="icon-auto"
-              src="{{url_for('static',filename='images/eliminar.png')}}"
-            />
-            </button>              
-          </a>
-          
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </section>
+<div class="encabezado txt-encabezado">
+  Autos
+</div>
 {%endblock%}
-   
-    
- 
+{%block cuerpo%}
+
+<section class="contenedor">
+  <div  class="slot-start padding">
+    <img src="{{url_for('static',filename='images/autos.png')}}" />
+  </div>
+  <div class="alineacion">
+    <a href="/formularioAutos">
+      <button class="boton-icono">
+        <img src="{{url_for('static',filename='images/registrar.png')}}" />
+        <label class="slot-end padding-center"> Registrar auto </label>
+      </button>
+    </a>
+  </div>
+</section>
+
+<section class="slot-center padding">
+  <h2 class="txt-encabezado2">Listado de autos</h2>
+  <table>
+    <thead class="slot-center">
+      <th>Id</th>
+      <th>Cliente</th>
+      <th>Placa</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Color</th>
+      <th>Año</th>
+      <th>Transmision</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+
+    {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+    <tr>
+      <td>123</td>
+      <td>{{obj}}</td>
+      <td>1114-placa</td>
+      <td>Marca-</td>
+      <td>Modelo</td>
+      <td>gris</td>
+      <td>2020</td>
+      <td>automatico</td>
+      <td>
+        <a href="/formularioAutos">
+          <button class="boton-icono-only">
+            <img class="icon-auto" src="{{url_for('static',filename='images/editar.png')}}" />
+          </button>
+        </a>
+      </td>
+      <td>
+        <a href="/servicios">
+          <button class="boton-icono-only">
+            <img class="icon-auto" src="{{url_for('static',filename='images/servicios-icono.png')}}" />
+          </button>
+        </a>
+      </td>
+      <td>
+        <a>
+          <button class="boton-icono-only">
+            <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
+          </button>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+{%endblock%}

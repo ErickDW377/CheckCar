@@ -6,22 +6,22 @@
 {%endblock%}
 {%block cuerpo%}
 
-<section class="padding-m txt-encabezado">
-  <label">
-    <img class="slot-start padding icon-xxg" src="{{url_for('static',filename='images/productos.png')}}" />
-    </label>
-    <label class="padding-sm">
-      <a href="/formularioProductos">
-        <button class="boton-icono alineacion">
-          <img src="{{url_for('static',filename='images/registrar.png')}}" />
-          <label class="slot-end padding-center"> Registrar Producto </label>
-        </button>
-      </a>
-    </label>
+<section class="contenedor">
+  <div class="slot-start padding">
+    <img src="{{url_for('static',filename='images/productos.png')}}" />
+  </div>
+  <div class="alineacion">
+    <a href="/formularioProductos">
+      <button class="boton-icono">
+        <img src="{{url_for('static',filename='images/registrar.png')}}" />
+        <label class="slot-end padding-center"> Registrar Producto </label>
+      </button>
+    </a>
+  </div>
 
 </section>
 
-<section class="slot-center padding-g">
+<section class="slot-center padding-ch">
   <h2 class="txt-encabezado2">Listado de Productos</h2>
   <table>
     <thead class="slot-center">
@@ -37,6 +37,7 @@
       <th>Descripcion</th>
       <th>Unidades</th>
       <th></th>
+      <th></th>
     </thead>
 
     {%for obj in ['Filtro de gas', 'Focos', 'Aceites', 'Bujias']%}
@@ -51,19 +52,20 @@
       <td>$500</td>
       <td>$500</td>
       <td>Gran tamaño</td>
-      <td>1</td>
-
+      <td>2</td>
       <td>
         <a href="/formularioProductos">
           <button class="boton-icono-only">
             <img class="icon-auto" src="{{url_for('static',filename='images/editar.png')}}" />
           </button>
-          <a>
-            <button class="boton-icono-only">
-              <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
-            </button>
-          </a>
-
+        </a>
+      </td>
+      <td>
+        <a>
+          <button class="boton-icono-only">
+            <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
+          </button>
+        </a>
       </td>
     </tr>
     {% endfor %}
