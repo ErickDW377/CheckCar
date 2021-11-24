@@ -4,14 +4,24 @@
     {%block encabezado%}
 
     {%endblock%}
+    <div>
+    <label class=" slot-end padding-login">        
+        <a href="/login">           
+            <button class="boton-icono">
+                <img  class="icon-m" src="{{url_for('static',filename='images/login.png')}}"/>
+                <label  class="margenes-A-B margenes-I" >{{current_user.userName}}  </label>
+            </button>
+        </a>              
+    </label>
+    </div>         
     <nav class="menu">
-        <label class="padding"><a href="/"> Inicio </a></label>
-        <label class="padding"><a href="/clientes"> Clientes </a></label>
-        <label class="padding"><a href="/autos"> Autos </a></label>
-        <label class="padding"><a href="/servicios"> Servicios </a></label>
-        <label class="padding"><a href="/mecanicos"> Mecanicos </a></label>
-        <label class="padding"><a href="/productos"> Productos </a></label>
-    </nav>
+        <label class="padding "><a href="/"> Inicio </a></label>
+        <label class="padding "><a href="/clientes"> Clientes </a></label>
+        <label class="padding "><a href="/autos"> Autos </a></label>
+        <label class="padding "><a href="/servicios"> Servicios </a></label>
+        <label class="padding "><a href="/mecanicos"> Mecanicos </a></label>
+        <label class="padding "><a href="/productos"> Productos </a></label>
+    </nav>  
 </header>
 
 {%block cuerpo%}

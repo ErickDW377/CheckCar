@@ -1,63 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>CHECK CAR </title>
-  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
-</head>
-</head>
-
+{% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 <body class="fondo">
   <header class="encabezado txt-encabezado">Formulario Servicio</header>
-  <form class="form" action="/servicios">
+  {% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
+  <form class="form" action="/servicios/guardar/{{editar}}" method="post" enctype="multipart/form-data">
     <div>
-      <label>ID:</label>
-      <input type="number" placeholder="id" name="id" required />
+      ID:
+      <input type="number" placeholder="id" name="id" value="{{servicios.idServicio}}"/>      
     </div>
 
     <div>
-      <label>Auto:</label>
-      <input type="text" placeholder="Auto" name="auto" required />
+      Auto:
+      <input type="number" placeholder="Auto" name="auto" required value="{{servicios.idAutomovil}}"/>
     </div>
 
     <div>
-      <label>Tipo:</label>
-      <input type="text" placeholder="Tipo" name="tipo" required />
+      Tipo:
+      <input type="text" placeholder="Tipo" name="tipo" required value="{{servicios.tipo}}"/>
     </div>
 
     <div>
-      <label>Llegada:</label>
-      <input type="date" placeholder="Fecha de llegada" name="llegada" required />
+      Llegada:
+      <input type="Date" placeholder="Fecha de llegada" name="llegada" required value="{{servicios.llegada}}"/>
     </div>
 
     <div>
-      <label>Salida:</label>
-      <input type="date" placeholder="Fecha de salida" name="salida" />
+      Salida:
+      <input type="Date" placeholder="Fecha de salida" name="salida" value="{{servicios.salida}}"/>
     </div>
 
     <div>
-      <label>Problemas:</label>
-      <input type="text" placeholder="Descripción de problema" name="problema" required />
+      Problemas:
+      <input type="text" placeholder="Descripción de problema" name="problema" required value="{{servicios.problema}}"/>
     </div>
 
     <div>
-      <label>Avance:</label>
-      <input type="text" placeholder="Descripción de avances" name="color" />
+      Avance:
+      <input type="text" placeholder="Descripción de avances" name="avance" value="{{servicios.avance}}"/>
     </div>
 
     <div>
-      <label>Garantia:</label>
-      <input type="number" placeholder="Dias de garantía" name="garantia" />
+      Garantia:
+      <input type="number" placeholder="Dias de garantía" name="garantia" value="{{servicios.garantia}}"/>
     </div>
 
     <div>
-      <label>Estatus:</label>
-      <input type="text" placeholder="Estatus del servicio" name="garantia" />
+      Estatus:
+      <input type="text" placeholder="Estatus del servicio" name="estatus" value="{{servicios.estatus}}"/>
     </div>
 
     <div>
-      <label>Detalles:</label>
+      Detalles:
       <textarea placeholder="Detalles" name="detalles" cols="7" rows="10"></textarea>
       <a href="/detallesServicios">
         <button class="color-verde" type="button">Agregar detalles</button>
@@ -65,13 +64,13 @@
     </div>
 
     <div>
-      <label>Mano de obra:</label>
-      <input type="number" placeholder="Costo de mano de obra" name="manoObra" />
+      Mano de obra:
+      <input type="number" placeholder="Costo de mano de obra" name="manoObra" value="{{servicios.manoObra}}"/>
     </div>
 
     <div>
-      <label>Total:</label>
-      <input type="number" placeholder="Costo total" name="total" />
+      Total:
+      <input type="number" placeholder="Costo total" name="total" value="{{servicios.total}}"/>
     </div>
 
     <div>
@@ -85,8 +84,7 @@
 
 
   </form>
-
+  
 
 </body>
-
-</html>
+{% endblock%}

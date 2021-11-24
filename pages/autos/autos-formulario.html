@@ -1,48 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>CHECK CAR </title>
-  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
-</head>
-</head>
+{% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 
 <body class="fondo">
   <header class="encabezado txt-encabezado">Formulario auto</header>
   <form class="form" action="/autos">
     <div>
-      <label>ID:</label>
+      ID:
       <input type="number" placeholder="id" name="id" required />
     </div>
 
     <div>
-      <label>Cliente:</label>
+      Cliente:
       <input type="text" placeholder="Nombre del cliente" name="cliente" required />
     </div>
 
     <div>
-      <label>Placa:</label>
+      Placa:
       <input type="text" placeholder="Placa" name="placa" required />
     </div>
 
     <div>
-      <label>Marca:</label>
+      Marca:
       <input type="text" placeholder="Marca" name="marca" required />
     </div>
 
     <div>
-      <label>Modelo:</label>
+      Modelo:
       <input type="text" placeholder="Modelo" name="modelo" required />
     </div>
 
     <div>
-      <label>Año:</label>
+      Año:
       <input type="number" placeholder="Año" name="año" required />
     </div>
 
     <div>
-      <label>Color:</label>
+      Color:
       <input type="text" placeholder="Color del carro" name="color" />
     </div>
 
@@ -50,14 +42,14 @@
       <fieldset>
         <legend>Tansmision</legend>
         <div>
-          <label>
+          
             <input type="radio" name="transmision" value="Automatico"> Automatico
-          </label>
+          
         </div>
         <div>
-          <label>
+          
             <input type="radio" name="transmision" value="Manual"> Manual
-          </label>
+          
         </div>
       </fieldset>
     </div>
@@ -76,5 +68,4 @@
 
 
 </body>
-
-</html>
+{% endblock%}

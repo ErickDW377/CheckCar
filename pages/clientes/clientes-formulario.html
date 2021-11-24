@@ -1,93 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>CHECK CAR </title>
-  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
-</head>
-</head>
+{% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 
 <body class="fondo">
   <header class="encabezado txt-encabezado">Clientes</header>
-  <form class="form" action="/clientes">
+  <form class="form" action="/formularioClientes/guardar" method="post" enctype="multipart/form-data">
 
     <div>
-      <label>Id Cliente:</label>
-      <input type="number" placeholder="id Cliente" name="id" required />
+      Id Cliente:
+      <input type="number" placeholder="id Cliente" name="id" />
     </div>
 
     <div>
-      <label>Usuario:</label>
-      <input type="text" placeholder="Usuario" name="Nombre de Usuario" required />
+      Usuario:
+      <input type="text" placeholder="Usuario" name="userName" required />
     </div>
 
     <div>
-      <label>Contraseña:</label>
+      Contraseña:
       <input type="password" placeholder="password" name="password" required />
     </div>
 
     <div>
-      <label>Empresa:</label>
-      <input type="text" placeholder="Empresa" name="Empresa" />
+      Empresa:
+      <input type="text" placeholder="Empresa" name="empresa" />
     </div>
 
     <div>
-      <label>Nombre:</label>
-      <input type="text" placeholder="Nombre" name="Nombre" required />
+      Nombre:
+      <input type="text" placeholder="Nombre" name="nombre" required />
     </div>
 
     <div>
-      <label>Apellido Paterno:</label>
-      <input type="text" placeholder="Apellido Paterno" name="Apellido Paterno" required />
+      Apellido Paterno:
+      <input type="text" placeholder="Apellido Paterno" name="apellidoP" required />
     </div>
 
     <div>
-      <label>Apellido Materno:</label>
-      <input type="text" placeholder="Apellido Materno" name="Apellido Materno" required />
+      Apellido Materno:
+      <input type="text" placeholder="Apellido Materno" name="apellidoM" required />
     </div>
     <div>
-      <label>Telefono:</label>
-      <input type="number" placeholder=" telefono" name="Numero de telefono" required />
-    </div>
-
-    <div>
-      <label>Email:</label>
-      <input type="text" placeholder="Email" name="Email" />
+      Telefono:
+      <input type="number" placeholder=" telefono" name="tel" required />
     </div>
 
     <div>
-      <label>Calle:</label>
-      <input type="text" placeholder="Calle" name="Calle" />
+      Email:
+      <input type="text" placeholder="Email" name="email" />
     </div>
 
     <div>
-      <label>Numero Esterior:</label>
+      Calle:
+      <input type="text" placeholder="Calle" name="calle" />
+    </div>
+
+    <div>
+      Numero Esterior:
       <input type="number" placeholder="numExt" name="numExt" />
     </div>
 
     <div>
-      <label>Numero Interior :</label>
-      <input type="number" placeholder="numInt" name="numInt" />
+      Numero Interior :
+      <input type="text" placeholder="Numero interior" name="numInt" />
     </div>
 
     <div>
-      <label>Colonia:</label>
-      <input type="text" placeholder="Colonia" name="Colonia" />
+      Colonia:
+      <input type="text" placeholder="Colonia" name="colonia" />
     </div>
 
     <div>
-      <label>Municipio:</label>
-      <input type="text" placeholder="Municipio" name="Municipio" />
+      Municipio:
+      <input type="text" placeholder="Municipio" name="municipio" />
     </div>
 
     <div>
-      <label>Estado:</label>
-      <input type="text" placeholder="Estado" name="Estado" />
+      Estado:
+      <input type="text" placeholder="Estado" name="estado" />
     </div>
 
     <div>
-      <label>Codigo Postal:</label>
+      Codigo Postal:
       <input type="number" placeholder="cp" name="cp" />
     </div>
 
@@ -105,5 +97,4 @@
 
 
 </body>
-
-</html>
+{% endblock%}

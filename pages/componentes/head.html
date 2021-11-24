@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>CHECK CAR </title>
-    <link href="inicio.css" rel="stylesheet">
+    <title>CHECK CAR </title>     
+    
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    
     <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet">
 </head>
 
@@ -12,6 +14,8 @@
     {% block contenedor%}
 
     {% endblock%}
+    
 </body>
-
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
 </html>

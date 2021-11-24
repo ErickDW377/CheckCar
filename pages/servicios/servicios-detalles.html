@@ -1,48 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>CHECK CAR </title>
-  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
-</head>
-</head>
-
+{% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 <body class="fondo">
   <header class="encabezado txt-encabezado">Detalles Servicio</header>
   <form class="form" action="/formularioServicios">
     <div>
-      <label>Id servicio:</label>
+      Id servicio:
       <input type="number" placeholder="id servicio" name="id" disabled />
     </div>
 
     <div>
-      <label>Producto:</label>
+      Producto:
       <input type="text" placeholder="Producto" name="producto" required />
     </div>
 
     <div>
-      <label>Cantidad:</label>
+      Cantidad:
       <input type="number" placeholder="Cantidad de productos" name="cantidad" required />
     </div>
 
     <div>
-      <label>Costo:</label>
+      Costo:
       <input type="number" placeholder="Costo unitario" name="costo" disabled />
     </div>
 
     <div>
-      <label>Total:</label>
+      Total:
       <input type="number" placeholder="Costo total" name="total" disabled />
     </div>
 
     <div>
-      <label>Área de reparación:</label>
+      Área de reparación:
       <input type="text" placeholder="Área de reparación" name="area" required />
     </div>
 
     <div>
-      <label>Mecanico:</label>
+      Mecanico:
       <input type="text" placeholder="Nombre del mecánico" name="mecanico" required />
     </div>
 
@@ -60,5 +51,4 @@
 
 
 </body>
-
-</html>
+{% endblock%}

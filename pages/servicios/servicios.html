@@ -1,6 +1,14 @@
 {% extends 'componentes/paginaMenu.html' %} {%block encabezado%}
 <div class="encabezado txt-encabezado">Servicios</div>
 {%endblock%} {%block cuerpo%}
+{% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
 <section class="contenedor">
   <div class="slot-start padding">
     <img src="{{url_for('static',filename='images/servicios.png')}}" />
@@ -18,7 +26,7 @@
 <section class="slot-center padding-ch">
   <h2 class="txt-encabezado2">Listado de servicios</h2>
   <table>
-    <thead class="slot-center">
+    <thead>
       <th>Id</th>
       <th>Auto</th>
       <th>Tipo</th>
@@ -36,30 +44,55 @@
       <th></th>
     </thead>
 
-    {%for obj in ['Nissan Civic 2020', 'Volkswagen Jetta 2001 ', 'Toyota Yaris
-    2019', 'Volkswagen Golf 2001 ']%}
+    {%for obj in servicios%}
+          <!-- Modal -->
+          <div id="eliminar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                  <h4 class="modal-title">Confirmacion de proceso</h4>
+                </div>
+                <div class="modal-body">
+                  <p>¿Estas seguro de eliminar el registro: {{obj.idServicio}} ?</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="/servicios/{{obj.idServicio}}" class="btn btn-info"
+                    >Aceptar</a
+                  >
+                  <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </tr>
     <tr>
-      <td>123</td>
+      <td>{{obj.idServicio}}</td>
+      <td>{{obj.idAutomovil}}</td>
+      <td>{{obj.tipo}}</td>
+      <td>{{obj.llegada}}</td>
+      <td>{{obj.salida}}</td>
+      <td>{{obj.problema}}</td>
+      <td>{{obj.avance}}</td>
+      <td>{{obj.garantia}}</td>
+      <td>{{obj.estatus}}</td>
       <td>{{obj}}</td>
-      <td>Servicio mayor</td>
-      <td>24/10/21</td>
-      <td></td>
-      <td>Nececita servicio</td>
-      <td></td>
-      <td>30</td>
-      <td>pendiente</td>
-      <td></td>
-      <td>$</td>
-      <td>$</td>
+      <td>${{obj.manoObra}}</td>
+      <td>${{obj.total}}</td>
       <td>
-        <a href="/formularioServicios">
+        <a href="/formularioServicios/{{obj.idServicio}}">
           <button class="boton-icono-only">
             <img
               class="icon-auto"
               src="{{url_for('static',filename='images/editar.png')}}"
             />
           </button>
-        </a>        
+        </a>
       </td>
       <td>
         <a href="/detallesServicios">
@@ -72,17 +105,21 @@
         </a>
       </td>
       <td>
-        <a>
-          <button class="boton-icono-only">
-            <img
-              class="icon-auto"
-              src="{{url_for('static',filename='images/eliminar.png')}}"
-            />
-          </button>
-        </a>
-      </td>
-    </tr>
+        <button
+          class="boton-icono-only"
+          type="button"
+          data-toggle="modal"
+          data-target="#eliminar"
+          class="btn btn-info"
+        >
+          <img
+            class="icon-auto"
+            src="{{url_for('static',filename='images/eliminar.png')}}"
+          />
+        </button>
+      </td>    
     {% endfor %}
   </table>
 </section>
+
 {%endblock%}

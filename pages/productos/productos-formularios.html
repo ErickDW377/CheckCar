@@ -1,68 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>CHECK CAR </title>
-  <link href="{{url_for('static',filename='css/estilos-globales.css')}}" rel="stylesheet" />
-</head>
-</head>
-
+{% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 <body class="fondo">
   <header class="encabezado txt-encabezado">Productos</header>
   <form class="form" action="/productos">
 
     <div>
-      <label>Id Producto:</label>
+      Id Producto:
       <input type="number" placeholder="id Producto" name="id" required />
     </div>
 
     <div>
-      <label>Nombre Producto:</label>
+      Nombre Producto:
       <input type="text" placeholder="Nombre Producto" name="Nombre Producto" required />
     </div>
 
     <div>
-      <label>Marca:</label>
+      Marca:
       <input type="text" placeholder="Marca" name="Marca" />
     </div>
 
     <div>
-      <label>Modelo:</label>
+      Modelo:
       <input type="text" placeholder="Modelo" name="Modelo" />
     </div>
 
     <div>
-      <label>Tipo:</label>
+      Tipo:
       <input type="text" placeholder="Tipo" name="Tipo" />
     </div>
 
     <div>
-      <label>Anaquel:</label>
+      Anaquel:
       <input type="text" placeholder="Anaquel" name="Anaquel" />
     </div>
 
     <div>
-      <label>Estante:</label>
+      Estante:
       <input type="text" placeholder="Estante" name="Estante" />
     </div>
     <div>
-      <label>Costo:</label>
+      Costo:
       <input type="number" placeholder=" Costo" name="Costo" />
     </div>
 
     <div>
-      <label>Precio:</label>
+      Precio:
       <input type="number" placeholder="Precio" name="Precio" />
     </div>
 
     <div>
-      <label>Descripcion:</label>
+      Descripcion:
       <input type="text" placeholder="Descripcion" name="Descripcion" />
     </div>
 
     <div>
-      <label>Unidades:</label>
+      Unidades:
       <input type="number" placeholder="Unidades" name="Unidades" />
     </div>
 
@@ -81,5 +72,4 @@
 
 
 </body>
-
-</html>
+{% endblock%}
