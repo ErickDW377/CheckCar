@@ -14,6 +14,7 @@ app.secret_key='cl4v3'
 login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+login_manager.login_message = u"! Debes iniciar sesión !"
 
 @app.route('/')
 def incio():    
@@ -56,7 +57,11 @@ def servicios():
 
 @app.route('/formularioServicios')
 def registrarServicios():  
-    s=Servicios()         
+    s=Servicios()
+    s.tipo = ''
+    s.problema = ''
+    s.avance = ''
+    s.estatus = ''       
     return  render_template(
         'servicios/servicios-formulario.html',
         servicios = s,
