@@ -9,7 +9,7 @@ db=SQLAlchemy()
 class Servicios(db.Model):
     __tablename__= 'Servicios'
     idServicio = Column(Integer, primary_key=True)
-    idAutomovil = Column(Integer)
+    idAutomovil = Column(Integer, nullable=False)
     tipo = Column(String(20), nullable= False)
     llegada = Column(Date, nullable= False)
     salida = Column(Date, nullable= False)
@@ -44,7 +44,7 @@ class Servicios(db.Model):
 class Clientes(db.Model):
     __tablename__ = 'Clientes'
     idCliente = Column(Integer, primary_key=True)
-    idUsuario = Column(String(25),nullable=False)
+    idUsuario = Column(Integer,nullable=False)
     empresa = Column(String(40), unique=True)    
     telefono = Column(String(12),nullable=False)    
     calle = Column(String(30))
@@ -52,7 +52,8 @@ class Clientes(db.Model):
     numInt = Column(String(2))
     colonia = Column(String(20))
     municipio = Column(String(20))
-    estado = Column(String(20))    
+    estado = Column(String(20))
+    cp = Column(String(5))   
     
     def registrar(self):        
         db.session.add(self)
@@ -72,6 +73,23 @@ class Clientes(db.Model):
         objeto=self.consultar(id)
         db.session.delete(objeto)
         db.session.commit()
+
+    def buscarXusuario(self,usuario):
+        return self.query.filter(Clientes.idUsuario == usuario).first()
+
+    def getUsuario(self):
+        u = Usuario()
+        u= u.consultar(self.idUsuario)
+        return u
+
+    def getNombre(self):        
+        u = self.getUsuario()
+        return u.nombre
+    
+    def getEmail(self):        
+        u = self.getUsuario()
+        return u.email
+
 
 
 class Usuario(UserMixin,db.Model):

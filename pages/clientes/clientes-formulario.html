@@ -2,99 +2,118 @@
 
 <body class="fondo">
   <header class="encabezado txt-encabezado">Clientes</header>
-  <form class="form" action="/formularioClientes/guardar" method="post" enctype="multipart/form-data">
-
+  {% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
+  <form class="form" action="/formularioClientes/guardar/{{editar}}/{{url}}" method="post" enctype="multipart/form-data">
     <div>
-      Id Cliente:
-      <input type="number" placeholder="id Cliente" name="id" />
-    </div>
-
-    <div>
-      Usuario:
-      <input type="text" placeholder="Usuario" name="userName" required />
-    </div>
-
-    <div>
-      Contraseña:
-      <input type="password" placeholder="password" name="password" required />
-    </div>
-
-    <div>
-      Empresa:
-      <input type="text" placeholder="Empresa" name="empresa" />
+      Id Usuario:
+      <input type="number" placeholder="id Usuario" name="idU" value='{{usuarios.idUsuario}}' />
     </div>
 
     <div>
       Nombre:
-      <input type="text" placeholder="Nombre" name="nombre" required />
+      <input type="text" placeholder="Nombre completo" name="nombre" value='{{usuarios.nombre}}' required />
     </div>
 
     <div>
-      Apellido Paterno:
-      <input type="text" placeholder="Apellido Paterno" name="apellidoP" required />
-    </div>
-
-    <div>
-      Apellido Materno:
-      <input type="text" placeholder="Apellido Materno" name="apellidoM" required />
-    </div>
-    <div>
-      Telefono:
-      <input type="number" placeholder=" telefono" name="tel" required />
+      Usuario:
+      <input type="text" placeholder="Nombre de usuario" name="userName" value='{{usuarios.userName}}' required />
     </div>
 
     <div>
       Email:
-      <input type="text" placeholder="Email" name="email" />
+      <input type="text" placeholder="Email" name="email" value='{{usuarios.email}}' />
     </div>
+
+    <div>
+      Contraseña:
+      <input type="password" placeholder="password" name="password" value='{{usuarios.password}}' required />
+    </div>
+    {% if current_user.is_authenticated  and current_user.is_admin() %}
+    <div>
+      Tipo:      
+      <select name="tipo" >
+        <option  value="cliente">Cliente</option>      
+        <option  value="administrador">Administrador</option>                   
+    </select>
+    </div>
+    
+    <div>
+      Estatus:
+      <input type="checkbox" name="estatus" value="True">
+    </div>
+    {% endif %}
+
+    {% if usuarios.tipo!= 'administrador' %}
+    <div class="form2">
+
+    <div>
+      <div>
+        Id Cliente:
+        <input type="number" placeholder="id Cliente" name="idC" value='{{clientes.idCliente}}'/>
+      </div>
+
+      Empresa:
+      <input type="text" placeholder="Empresa" name="empresa" value='{{clientes.empresa}}'/>
+    </div>
+
+    <div>
+      Telefono:
+      <input type="number" placeholder=" telefono" name="tel" value='{{clientes.telefono}}'/>
+    </div>   
 
     <div>
       Calle:
-      <input type="text" placeholder="Calle" name="calle" />
+      <input type="text" placeholder="Calle" name="calle" value='{{clientes.calle}}' />
     </div>
 
     <div>
-      Numero Esterior:
-      <input type="number" placeholder="numExt" name="numExt" />
+      Numero Exterior:
+      <input type="number" placeholder="numExt" name="numExt" value='{{clientes.numExt}}' />
     </div>
 
     <div>
       Numero Interior :
-      <input type="text" placeholder="Numero interior" name="numInt" />
+      <input type="text" placeholder="Numero interior" name="numInt" value='{{clientes.numInt}}' />
     </div>
 
     <div>
       Colonia:
-      <input type="text" placeholder="Colonia" name="colonia" />
+      <input type="text" placeholder="Colonia" name="colonia" value='{{clientes.colonia}}' />
     </div>
 
     <div>
       Municipio:
-      <input type="text" placeholder="Municipio" name="municipio" />
+      <input type="text" placeholder="Municipio" name="municipio" value='{{clientes.municipio}}' />
     </div>
 
     <div>
       Estado:
-      <input type="text" placeholder="Estado" name="estado" />
+      <input type="text" placeholder="Estado" name="estado" value='{{clientes.estado}}' />
     </div>
 
     <div>
       Codigo Postal:
-      <input type="number" placeholder="cp" name="cp" />
+      <input type="text" placeholder="cp" name="cp" value='{{clientes.cp}}' />
     </div>
+
+  </div>
+  {% endif %}
 
     <div>
       <button type="submit"> Guardar </button>
     </div>
     <div>
-      <a href="/clientes">
+      <a href="/{{url}}">
         <button class="color-danger" type="button">Cancelar</button>
       </a>
     </div>
-
-
   </form>
-
-
 </body>
 {% endblock%}

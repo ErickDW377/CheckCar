@@ -1,5 +1,8 @@
 from flask import Flask,render_template,request,flash, redirect, url_for
 from flask_bootstrap import Bootstrap
+from sqlalchemy.sql.elements import Null
+from sqlalchemy.sql.expression import select
+from sqlalchemy.sql.sqltypes import String
 from DAO import db, Servicios, Usuario, Clientes
 from flask_login import LoginManager,current_user,login_required,login_user,logout_user
 
@@ -17,10 +20,18 @@ login_manager.login_view = "login"
 login_manager.login_message = u"! Debes iniciar sesión !"
 
 @app.route('/')
-def incio():    
+def iniciar():    
+    return  render_template('inicio/inicio.html')
+
+@app.route('/inicio')
+def inicio():    
     return  render_template('inicio/inicio.html')
 
 # Enrutamiento login
+@app.route('/login')
+def login():    
+    return  render_template('login/login.html')
+
 @app.route('/usuarios/login',methods=['post'])
 def validarUsuario():
     user=Usuario()
@@ -29,24 +40,20 @@ def validarUsuario():
     user=user.validar(email,password)
     if user!=None:
         login_user(user)
-        return render_template('inicio/inicio.html')
+        return inicio()
     else:
         flash('!Datos de la sesión incorrectos!')
-        return render_template('login/login.html')
+        return login()
 
 @app.route('/cerrarSesion')
 @login_required
 def cerrarSesion():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('inicio'))
 
 @login_manager.user_loader
 def load_user(id):
     return Usuario.query.get(int(id))
-
-@app.route('/login')
-def login():    
-    return  render_template('login/login.html')
 
 # Enrutamiento a Servicios
 @app.route('/servicios')
@@ -76,7 +83,7 @@ def editarServicios(id):
          editar=1)
 
 @app.route('/servicios/guardar/<int:editar>',methods=['post'])
-def guardarS(editar): 
+def guardarServicios(editar): 
         s=Servicios()          
         s.idAutomovil= request.form['auto']
         s.tipo=request.form['tipo']
@@ -95,14 +102,10 @@ def guardarS(editar):
         else:             
             s.registrar()
             flash('Servicio registrado exitosamente')
-        return  render_template(
-            'servicios/servicios-formulario.html',
-            servicios = s,
-            editar=1
-            )
+        return  editarServicios(s.idServicio)
 
 @app.route('/servicios/<int:id>')
-def eliminarS(id):
+def eliminarServicios(id):
     s=Servicios()
     s.eliminar(id)
     flash('Servicio eliminado con exito')        
@@ -130,43 +133,108 @@ def mecanicos():
 def formularioMecanicos():    
     return  render_template('mecanicos/mecanicos-formulario.html')
 
-
 # Enrutamiento a Clientes
 @app.route('/clientes')
-def clientes():    
-    return  render_template('clientes/clientes.html')
+def clientes():
+    c = Clientes()
+    clientes = c.consultarAll()    
+    return  render_template('clientes/clientes.html', clientes = clientes)
 
-@app.route('/formularioClientes')
-def formularioCliente():    
-    return  render_template('clientes/clientes-formulario.html')
+@app.route('/formularioClientes/<string:url>')
+def registrarClientes(url):
+    c=Clientes()
+    c.empresa= '' 
+    c.telefono= '' 
+    c.calle= ''
+    c.numExt= 0    
+    c.numInt= '' 
+    c.colonia= '' 
+    c.municipio= ''
+    c.estado= '' 
+    c.cp= ''
 
-@app.route('/formularioClientes/guardar',methods=['post'])
-def guardarC():
+    u = Usuario()
+    u.nombre = ''
+    u.userName = ''
+    u.email = ''
+    u.password = ''    
+
+    return  render_template(
+        'clientes/clientes-formulario.html',
+         clientes = c,
+         usuarios = u,
+         editar=0,
+         url = url)   
+
+@app.route('/formularioClientes/<int:idc>/<int:idu>/<string:url>')
+def editarClientes(idc, idu, url):    
+    c=Clientes()
+    if idc == 0:
+        c = c.buscarXusuario(idu)        
+    else:
+        c = c.consultar(idc)        
+    
+    u= Usuario()
+    usuarios = u.consultar(idu)    
+    return  render_template(
+        'clientes/clientes-formulario.html',
+         clientes = c,
+         usuarios = usuarios,
+         editar=1,
+         url= url)
+
+@app.route('/formularioClientes/guardar/<int:editar>/<string:url>',methods=['post'])
+def guardarClientes(editar, url):
 
     user=Usuario()
     user.nombre = request.form['nombre']   
     user.userName = request.form['userName']
     user.email = request.form['email']
     user.password = request.form['password']
-    user.tipo = request.form['tipo']
-    user.estatus = request.form['estatus']   
-    user.registrar()
+    tipo = request.form.get('tipo')    
+    if tipo != None:        
+        user.tipo = tipo
+    else:
+        user.tipo = 'cliente'
+    estatus = request.values.get('estatus',False)
+    if estatus=="True":
+        user.estatus=True
+    else:
+        user.estatus=False
 
-    cliente = Clientes()
-    cliente.idUsuario = user.idUsuario
-    cliente.empresa = request.form['empresa']    
-    cliente.telefono = request.form['tel']    
-    cliente.calle = request.form['calle']
-    cliente.numExt = request.form['numExt']
-    cliente.numInt = request.form['numInt']
-    cliente.colonia = request.form['colonia']
-    cliente.municipio = request.form['municipio']
-    cliente.estado = request.form['estado']    
-    cliente.registrar()
+    if user.tipo == 'cliente':
+        cliente = Clientes()        
+        cliente.empresa = request.form['empresa']    
+        cliente.telefono = request.form['tel']    
+        cliente.calle = request.form['calle']        
+        cliente.numExt =   request.form['numExt']      
+        cliente.numInt = request.form['numInt']
+        cliente.colonia = request.form['colonia']
+        cliente.municipio = request.form['municipio']
+        cliente.estado = request.form['estado']     
+        cliente.cp = request.form['cp']
+    if editar==1:
+        user.idUsuario= int(request.form['idU'])                             
+        user.actualizar()
+        if user.tipo == 'cliente':
+            cliente.idUsuario = user.idUsuario
+            cliente.idCliente = int(request.form['idC'])
+            cliente.actualizar()
+        flash('Usuario editado con exito')                       
+    else:             
+        user.registrar()
+        if user.tipo == 'cliente':
+            cliente.idUsuario = user.idUsuario
+            cliente.registrar()
+        flash('Usuario registrado exitosamente')
+    return  editarClientes(cliente.idCliente,user.idUsuario,url)
 
-    
-    #flash('Usuario registrado con exito')
-    return clientes()
+@app.route('/clientes/<int:id>')
+def eliminarClientes(id):
+    c=Clientes()
+    c.eliminar(id)
+    flash('Cliente eliminado con exito')        
+    return  clientes()
 
 # Enrutamiento a Productos
 @app.route('/productos')

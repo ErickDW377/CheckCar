@@ -1,31 +1,59 @@
-{% extends 'componentes/head.html' %}
-{% block contenedor%}
+{% extends 'componentes/head.html' %} {% block contenedor%}
 <header>
-    {%block encabezado%}
-
-    {%endblock%}
-    <div>
-    <label class=" slot-end padding-login">        
-        <a href="/login">           
-            <button class="boton-icono">
-                <img  class="icon-m" src="{{url_for('static',filename='images/login.png')}}"/>
-                <label  class="margenes-A-B margenes-I" >{{current_user.userName}}  </label>
-            </button>
-        </a>              
+  {%block encabezado%} {%endblock%}
+  <div>
+    {% if current_user.is_authenticated %}
+    <li class="nav dropdown slot-end padding-login">
+      <a data-toggle="dropdown" href="#">
+        <button class="boton-icono">
+          <img
+            class="icon-m"
+            src="{{url_for('static',filename='images/login.png')}}"
+          />
+          <label class="margenes-A-B margenes-I"
+            >{{current_user.userName}}
+          </label>
+          <span class="caret"></span>
+        </button>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="/formularioClientes/0/{{current_user.idUsuario}}/inicio">
+            <span class="glyphicon glyphicon-edit"></span> Editar Perfil</a
+          >
+        </li>
+        <li>
+          <a href="/cerrarSesion"
+            ><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a
+          >
+        </li>
+      </ul>
+    </li>
+    {% else %}
+    <label class="slot-end padding-login">
+      <a href="/login">
+        <button class="boton-icono">
+          <img
+            class="icon-m"
+            src="{{url_for('static',filename='images/login.png')}}"
+          />
+        </button>
+      </a>
     </label>
-    </div>         
-    <nav class="menu">
-        <label class="padding "><a href="/"> Inicio </a></label>
-        <label class="padding "><a href="/clientes"> Clientes </a></label>
-        <label class="padding "><a href="/autos"> Autos </a></label>
-        <label class="padding "><a href="/servicios"> Servicios </a></label>
-        <label class="padding "><a href="/mecanicos"> Mecanicos </a></label>
-        <label class="padding "><a href="/productos"> Productos </a></label>
-    </nav>  
+    {% endif %}
+  </div>
+  <nav class="menu">
+    <label class="padding"><a href="/inicio"> Inicio </a></label>
+    {% if current_user.is_authenticated%}
+    {% if current_user.is_admin() %}
+    <label class="padding"><a href="/mecanicos"> Mecanicos </a></label>
+    <label class="padding"><a href="/productos"> Productos </a></label>
+    <label class="padding"><a href="/clientes"> Clientes </a></label>
+    {% endif %}    
+    <label class="padding"><a href="/autos"> Autos </a></label>
+    <label class="padding"><a href="/servicios"> Servicios </a></label>
+    {% endif %}
+  </nav>
 </header>
 
-{%block cuerpo%}
-
-{%endblock%}
-
-{%endblock%}
+{%block cuerpo%} {%endblock%} {%endblock%}

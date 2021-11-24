@@ -1,17 +1,20 @@
-{% extends 'componentes/paginaMenu.html' %}
-{%block encabezado%}
-<div class="encabezado txt-encabezado">
-  Clientes
-</div>
-{%endblock%}
-{%block cuerpo%}
-
+{% extends 'componentes/paginaMenu.html' %} {%block encabezado%}
+<div class="encabezado txt-encabezado">Clientes</div>
+{%endblock%} {%block cuerpo%}
+{% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
 <section class="contenedor">
   <div class="slot-start padding">
-    <img  src="{{url_for('static',filename='images/clientes.png')}}" />
+    <img src="{{url_for('static',filename='images/clientes.png')}}" />
   </div>
   <div class="alineacion">
-    <a href="/formularioClientes">
+    <a href="/formularioClientes/clientes">
       <button class="boton-icono">
         <img src="{{url_for('static',filename='images/registrar.png')}}" />
         <label class="slot-end padding-center"> Registrar Clientes </label>
@@ -25,7 +28,7 @@
   <table>
     <thead class="slot-center">
       <th>Id</th>
-      <th>Nombre </th>
+      <th>Usuario</th>
       <th>Empresa</th>
       <th>Telefono</th>
       <th>Email</th>
@@ -41,42 +44,82 @@
       <th></th>
     </thead>
 
-    {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+    {%for obj in clientes%}
     <tr>
-      <td>123</td>
-      <td>{{obj}}</td>
-      <td>HP</td>
-      <td>351-152-0609</td>
-      <td>{{obj}}@gmial.com</td>
-      <td>Escaramuza</td>
-      <td>#20</td>
-      <td>#20</td>
-      <td>Monte Bello</td>
-      <td>Zamora</td>
-      <td>Michoacan</td>
-      <td>105936</td>
+      <td>{{obj.idCliente}}</td>
+      <td>{{obj.getNombre()}}</td>
+      <td>{{obj.empresa}}</td>
+      <td>{{obj.telefono}}</td>
+      <td>{{obj.getEmail()}}</td>
+      <td>{{obj.calle}}</td>
+      <td>{{obj.numExt}}</td>
+      <td>{{obj.numInt}}</td>
+      <td>{{obj.colonia}}</td>
+      <td>{{obj.municipio}}</td>
+      <td>{{obj.estado}}</td>
+      <td>{{obj.cp}}</td>
       <td>
-        <a href="/formularioClientes">
+        <a
+          href="/formularioClientes/{{obj.idCliente}}/{{obj.idUsuario}}//clientes"
+        >
           <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/editar.png')}}" />
+            <img
+              class="icon-auto"
+              src="{{url_for('static',filename='images/editar.png')}}"
+            />
           </button>
         </a>
       </td>
       <td>
         <a href="/autos">
           <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/autos-icono.png')}}" />
+            <img
+              class="icon-auto"
+              src="{{url_for('static',filename='images/autos-icono.png')}}"
+            />
           </button>
         </a>
       </td>
       <td>
-        <a>
-          <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
-          </button>
-        </a>        
+        <button
+          class="boton-icono-only"
+          type="button"
+          data-toggle="modal"
+          data-target="#eliminar{{obj.idCliente}}"
+          class="btn btn-info"
+        >
+          <img
+            class="icon-auto"
+            src="{{url_for('static',filename='images/eliminar.png')}}"
+          />
+        </button> 
       </td>
     </tr>
+    <!-- Modal -->
+    <div id="eliminar{{obj.idCliente}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Confirmacion de proceso</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Estas seguro de eliminar el registro: {{obj.idCliente}} ?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="/servicios/{{obj.idCliente}}" class="btn btn-info"
+              >Aceptar</a
+            >
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </table>
 </section>
