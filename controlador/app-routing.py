@@ -3,9 +3,8 @@ from flask_bootstrap import Bootstrap
 from sqlalchemy.sql.elements import Null
 from sqlalchemy.sql.expression import select
 from sqlalchemy.sql.sqltypes import String
-from DAO import db, Servicios, Usuario, Clientes
+from DAO import db, Servicios, Usuario, Clientes, Productos
 from flask_login import LoginManager,current_user,login_required,login_user,logout_user
-
 
 app=Flask(__name__,template_folder='../pages',static_folder='../static')
 Bootstrap(app)
@@ -236,14 +235,68 @@ def eliminarClientes(id):
     flash('Cliente eliminado con exito')        
     return  clientes()
 
+
 # Enrutamiento a Productos
 @app.route('/productos')
-def productos():    
-    return  render_template('productos/productos.html') 
-
+def productos():
+    p = Productos()
+    productos= p.consultarAll()    
+    return  render_template('productos/productos.html', productos= productos)
+    
 @app.route('/formularioProductos')
-def formularioProductos():    
-    return  render_template('productos/productos-formularios.html') 
+def registrarProductos(): 
+    p=Productos()
+    p.nombre= '' 
+    p.marca= '' 
+    p.modelo= ''
+    p.tipo=''     
+    p.anaquel= 0 
+    p.estante= 0 
+    p.costo= 0
+    p.precio= '' 
+    p.descripcion= '' 
+    p.unidades= 0      
+    return render_template(
+        'productos/productos-formularios.html',
+         productos = p,
+         editar = 0)
+    
+@app.route('/formularioProductos/<int:id>')
+def editarProductos(id):
+        p=Productos()        
+        return  render_template(
+         'productos/productos-formularios.html',
+         productos = p.consultar(id),
+         editar=1)
+
+@app.route('/productos/guardar/<int:editar>',methods=['post'])
+def guardarProductos(editar):
+        p=Productos()          
+        p.nombre=request.form['nombre']
+        p.marca=request.form['marca']
+        p.modelo=request.form['modelo']
+        p.tipo=request.form['tipo']
+        p.anaquel=request.form['anaquel']
+        p.estante=request.form['estante']
+        p.costo=request.form['costo']
+        p.precio=request.form['precio']
+        p.descripcion=request.form['descripcion']
+        p.unidades=request.form['unidades']
+        if editar==1:
+            p.idProducto= int(request.form['id'])                             
+            p.actualizar()
+            flash('Producto editado con exito')                       
+        else:             
+            p.registrar()
+            flash('Producto registrado exitosamente')
+        return  editarProductos(p.idProducto)
+                
+@app.route('/productos/<int:id>')
+def eliminarProductos(id):
+    p=Productos()
+    p.eliminar(id)
+    flash('Producto eliminado con exito')        
+    return  productos()
 
 
 if __name__=='__main__':

@@ -1,11 +1,14 @@
-{% extends 'componentes/paginaMenu.html' %}
-{%block encabezado%}
-<div class="encabezado txt-encabezado">
-  Productos
-</div>
-{%endblock%}
-{%block cuerpo%}
-
+{% extends 'componentes/paginaMenu.html' %} {%block encabezado%}
+<div class="encabezado txt-encabezado">Productos</div>
+{%endblock%} {%block cuerpo%}
+{% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
 <section class="contenedor">
   <div class="slot-start padding">
     <img src="{{url_for('static',filename='images/productos.png')}}" />
@@ -18,15 +21,14 @@
       </button>
     </a>
   </div>
-
 </section>
 
 <section class="slot-center padding-ch">
   <h2 class="txt-encabezado2">Listado de Productos</h2>
   <table>
     <thead class="slot-center">
-      <th>Id</th>
-      <th> Producto</th>
+      <th>ID</th>
+      <th>Producto</th>
       <th>Marca</th>
       <th>Modelo</th>
       <th>Tipo</th>
@@ -38,37 +40,76 @@
       <th>Unidades</th>
       <th></th>
       <th></th>
+      <th></th>
     </thead>
 
-    {%for obj in ['Filtro de gas', 'Focos', 'Aceites', 'Bujias']%}
+    {%for obj in productos%} 
     <tr>
-      <td>111</td>
-      <td>{{obj}}</td>
-      <td>Mobil</td>
-      <td>Extengine</td>
-      <td>{{obj}}Semi-sintetico</td>
-      <td>Urrea</td>
-      <td>Mikel's</td>
-      <td>$500</td>
-      <td>$500</td>
-      <td>Gran tamaño</td>
-      <td>2</td>
+      <td>{{obj.idProducto}}</td>
+      <td>{{obj.nombre}}</td>
+      <td>{{obj.marca}}</td>
+      <td>{{obj.modelo}}</td>
+      <td>{{obj.tipo}}</td>
+      <td>{{obj.anaquel}}</td>
+      <td>{{obj.estante}}</td>
+      <td>${{obj.costo}}</td>
+      <td>${{obj.precio}}</td>
+      <td>{{obj.descripcion}}</td>
+      <td>{{obj.unidades}}</td>
       <td>
-        <a href="/formularioProductos">
+        <a 
+        href="/formularioProductos/{{obj.idProducto}}"
+        >
           <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/editar.png')}}" />
+           <img 
+            class="icon-auto" 
+            src="{{url_for('static',filename='images/editar.png')}}"
+          />
           </button>
         </a>
       </td>
       <td>
-        <a>
-          <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
-          </button>
-        </a>
-      </td>
+        <button
+          class="boton-icono-only"
+          type="button"
+          data-toggle="modal"
+          data-target="#eliminar{{obj.idProducto}}"
+          class="btn btn-info"
+        >
+          <img
+            class="icon-auto"
+            src="{{url_for('static',filename='images/eliminar.png')}}"
+          />
+        </button>        
+      </td>      
     </tr>
+    <!-- Modal -->
+    <div id="eliminar{{obj.idProducto}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Confirmacion de proceso</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Estas seguro de eliminar el registro: {{obj.idProducto}} ?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="/productos/{{obj.idProducto}}" class="btn btn-info"
+              >Aceptar</a
+            >
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </table>
 </section>
 {%endblock%}
+
