@@ -1,20 +1,28 @@
 {% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 <body class="fondo">
-  <header class="encabezado txt-encabezado">Formulario mecánicos</header>
-  <form class="form" action="/mecanicos">
+  <header class="encabezado txt-encabezado">Mecanicos</header>
+  {% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
+  <form class="form" action="/formularioMecanicos/guardar/{{editar}}/{{url}}" method="post" enctype="multipart/form-data">
     <div>
-      ID:
-      <input type="number" placeholder="id" name="id" required />
+      idEmpleado:
+      <input type="number" placeholder="id" name="id" value="{{mecanicos.idEmpleado}}"  />
     </div>
 
     <div>
       Nombre:
-      <input type="text" placeholder="Nombre" name="nombre" required />
+      <input type="text" placeholder="Nombre" name="nombre" value="{{mecanicos.idNombre}}"  />
     </div>
 
     <div>
       Nacimiento:
-      <input type="date" placeholder="Fecha de nacimiento" name="nacimiento" required />
+      <input type="date" placeholder="Fecha de nacimiento" name="nacimiento" value="{{mecanicos.nacimiento}}"  />
     </div>
 
     <div>
@@ -35,7 +43,7 @@
 
     <div>
       Telefono:
-      <input type="number" placeholder="Número de telefono" name="telefono" required />
+      <input type="number" placeholder="Número de telefono" name="telefono" value="{{mecanicos.telefono}}" />
     </div>
 
     <div>
@@ -45,42 +53,42 @@
 
     <div>
       Colonia:
-      <input type="text" placeholder="Colonia" name="colonia" />
+      <input type="text" placeholder="Colonia" name="colonia" value="{{mecanicos.colonia}}/>
     </div>
 
     <div>
       Estado:
-      <input type="text" placeholder="Estado" name="estado" />
+      <input type="text" placeholder="Estado" name="estado" value="{{mecanicos.estado}} />
     </div>
 
     <div>
       Municipio:
-      <input type="text" placeholder="Municipio" name="municipio" />
+      <input type="text" placeholder="Municipio" name="municipio" value="{{mecanicos.municipio}}/>
     </div>
 
     <div>
       CP:
-      <input type="number" placeholder="Código Postal" name="cp" />
+      <input type="number" placeholder="Código Postal" name="cp" value="{{mecanicos.cp}}/>
     </div>
 
     <div>
       Contratación:
-      <input type="date" placeholder="Fecha de contrato" name="contratacion" required />
+      <input type="date" placeholder="Fecha de contrato" name="contratacion" value="{{mecanicos.fechacontrato}} />
     </div>
 
     <div>
       Puesto:
-      <input type="text" placeholder="Puesto" name="puesto" required />
+      <input type="text" placeholder="Puesto" name="puesto" value="{{mecanicos.puesto}} />
     </div>
 
     <div>
       NSS:
-      <input type="text" placeholder="Número de seguro social" name="nss" />
+      <input type="text" placeholder="Número de seguro social" name="nss" value="{{mecanicos.numSeguroS}}/>
     </div>
 
     <div>
       RFC:
-      <input type="text" placeholder="RFC" name="rfc" />
+      <input type="text" placeholder="RFC" name="rfc" value="{{mecanicos.rfc}}/>
     </div>
 
     <div>

@@ -1,75 +1,79 @@
 {% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 <body class="fondo">
-  <header class="encabezado txt-encabezado">Productos</header>
-  <form class="form" action="/productos">
-
-    <div>
+  <header class="encabezado txt-encabezado">Formulario Productos</header>
+  {% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
+  <form class="form" action="/productos/guardar/{{editar}}" method="post" enctype="multipart/form-data">
+     <div>
       Id Producto:
-      <input type="number" placeholder="id Producto" name="id" required />
+      <input type="number" placeholder="ID Producto" name="id" value="{{productos.idProducto}}" />
     </div>
 
     <div>
-      Nombre Producto:
-      <input type="text" placeholder="Nombre Producto" name="Nombre Producto" required />
+      Nombre:
+      <input type="text" placeholder="Nombre" name="nombre" value="{{productos.nombre}}" required />
     </div>
 
     <div>
       Marca:
-      <input type="text" placeholder="Marca" name="Marca" />
+      <input type="text" placeholder="Marca" name="marca" value="{{productos.marca}}" />
     </div>
 
     <div>
       Modelo:
-      <input type="text" placeholder="Modelo" name="Modelo" />
+      <input type="text" placeholder="Modelo" name="modelo" value="{{productos.modelo}}" />
     </div>
 
     <div>
       Tipo:
-      <input type="text" placeholder="Tipo" name="Tipo" />
+      <input type="text" placeholder="Tipo" name="tipo" value="{{productos.tipo}}"/>
     </div>
 
     <div>
       Anaquel:
-      <input type="text" placeholder="Anaquel" name="Anaquel" />
+      <input type="number" placeholder="Anaquel" name="anaquel" value="{{productos.anaquel}}" />
     </div>
 
     <div>
       Estante:
-      <input type="text" placeholder="Estante" name="Estante" />
+      <input type="number" placeholder="Estante" name="estante" value="{{productos.estante}}" />
     </div>
     <div>
       Costo:
-      <input type="number" placeholder=" Costo" name="Costo" />
+      <input type="number" placeholder="Costo" name="costo" value="{{productos.costo}}" />
     </div>
 
     <div>
       Precio:
-      <input type="number" placeholder="Precio" name="Precio" />
+      <input type="number" placeholder="Precio" name="precio" value="{{productos.precio}}" />
     </div>
 
     <div>
       Descripcion:
-      <input type="text" placeholder="Descripcion" name="Descripcion" />
+      <input type="text" placeholder="Descripcion" name="descripcion" value="{{productos.descripcion}}" />
     </div>
 
     <div>
       Unidades:
-      <input type="number" placeholder="Unidades" name="Unidades" />
+      <input type="number" placeholder="Unidades" name="unidades" value="{{productos.unidades}}" />
     </div>
 
-
-    <div>
+  <div>
+    
       <button type="submit"> Guardar </button>
+   
     </div>
     <div>
       <a href="/productos">
         <button class="color-danger" type="button">Cancelar</button>
       </a>
     </div>
-
-
-  </form>
-
-
+    </form>
 </body>
 {% endblock%}
