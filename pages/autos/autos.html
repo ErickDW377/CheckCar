@@ -1,16 +1,24 @@
 {% extends 'componentes/paginaMenu.html' %}
 {%block encabezado%}
-<div class="encabezado txt-encabezado">
-  Autos
-</div>
-{%endblock%}
-{%block cuerpo%}
+<div class="encabezado txt-encabezado">Autos</div>
+{%endblock%} {%block cuerpo%}
+{% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
 
 <section class="contenedor">
   <div  class="slot-start padding">
     <img src="{{url_for('static',filename='images/autos.png')}}" />
   </div>
-  <div class="alineacion">
+  {% if current_user.is_authenticated  and current_user.is_admin() %} 
+
+  <div 
+  class="alineacion">
     <a href="/formularioAutos">
       <button class="boton-icono">
         <img src="{{url_for('static',filename='images/registrar.png')}}" />
@@ -18,12 +26,13 @@
       </button>
     </a>
   </div>
+  {% endif %}
+
 </section>
 
-<section class="slot-center padding">
+<section class="slot-center padding-ch">
   <h2 class="txt-encabezado2">Listado de autos</h2>
   <table>
-    <thead class="slot-center">
       <th>Id</th>
       <th>Cliente</th>
       <th>Placa</th>
@@ -32,43 +41,84 @@
       <th>Color</th>
       <th>Año</th>
       <th>Transmision</th>
+      {% if current_user.is_authenticated  and current_user.is_admin() %} 
       <th></th>
       <th></th>
       <th></th>
+      {% endif %}
     </thead>
 
-    {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+    {%for obj in autos%}
     <tr>
-      <td>123</td>
-      <td>{{obj}}</td>
-      <td>1114-placa</td>
-      <td>Marca-</td>
-      <td>Modelo</td>
-      <td>gris</td>
-      <td>2020</td>
-      <td>automatico</td>
+      
+      <td>{{obj.idAutomovil}}</td>
+      <td>{{obj.idCliente}}</td>
+      <td>{{obj.placa}}</td>
+      <td>{{obj.marca}}</td>
+      <td>{{obj.modelo}}</td>
+      <td>{{obj.color}}</td>
+      <td>{{obj.año}}</td>
+      <td>{{obj.transmicion}}</td>
+      {% if current_user.is_authenticated  and current_user.is_admin() %} 
       <td>
-        <a href="/formularioAutos">
+        <a href="/formularioAutos/{{obj.idAutomovil}}">
           <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/editar.png')}}" />
+            <img 
+            class="icon-auto" 
+            src="{{url_for('static',filename='images/editar.png')}}"
+            />
           </button>
         </a>
       </td>
       <td>
-        <a href="/servicios">
+        <a href="/autos">
           <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/servicios-icono.png')}}" />
+            <img class="icon-auto"
+             src="{{url_for('static',filename='images/servicios-icono.png')}}" />
           </button>
         </a>
       </td>
       <td>
-        <a>
-          <button class="boton-icono-only">
-            <img class="icon-auto" src="{{url_for('static',filename='images/eliminar.png')}}" />
+        <button
+          class="boton-icono-only"
+          type="button"
+          data-toggle="modal"
+          data-target="#eliminar{{obj.idAutomovil}}"
+          class="btn btn-info"
+        >
+            <img class="icon-auto"
+             src="{{url_for('static',filename='images/eliminar.png')}}" 
+             />
           </button>
-        </a>
+        
       </td>
+      {% endif %}
     </tr>
+  <!-- Modal -->
+    <div id="eliminar{{obj.idAutomovil}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Confirmacion de proceso</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Estas seguro de eliminar el registro: {{obj.idAutomovil}} ?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="/autos/{{obj.idAutomovil}}" class="btn btn-info"
+              >Aceptar</a
+            >
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </table>
 </section>

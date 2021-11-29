@@ -3,8 +3,9 @@ from flask_bootstrap import Bootstrap
 from sqlalchemy.sql.elements import Null
 from sqlalchemy.sql.expression import select
 from sqlalchemy.sql.sqltypes import String
-from DAO import db, Servicios, Usuario, Clientes
+from DAO import db, Servicios, Usuario, Clientes,Autos
 from flask_login import LoginManager,current_user,login_required,login_user,logout_user
+
 
 
 app=Flask(__name__,template_folder='../pages',static_folder='../static')
@@ -117,12 +118,68 @@ def detallesServicios():
 
 # Enrutamiento a Autos
 @app.route('/autos')
-def autos():    
-    return  render_template('autos/autos.html')    
+def autos():   
+    a=Autos()
+    autos=a.consultarAll()
+    return  render_template('autos/autos.html',autos=autos)  
 
-@app.route('/formularioAutos')
-def formularioAutos():    
-    return  render_template('autos/autos-formulario.html')
+@app.route('/formularioAutos')  
+def registrarAutos():
+    a=Autos()
+    a.idAutomovil= 0
+    a.idCliente= 0
+    a.placa= ''
+    a.marca= ''
+    a.modelo= ''
+    a.color= ''
+    a.año= ''
+    a.transmicion= ''
+    return render_template(
+        'autos/autos-formulario.html',
+         autos=a,
+         editar=0 
+    )
+@app.route ('/formularioAutos/<int:id>')
+def editarAutos(id):
+    a=Autos()
+    return render_template(
+         'autos/autos-formulario.html', 
+         autos=a.consultar(id),
+         editar=1)
+    
+@app.route('/autos/guardar/<int:editar>',methods=['post'])
+def guardarAutos(editar): 
+    a=Autos()
+    a.idCliente= request.form['cliente']
+    a.placa= request.form['placa']
+    a.marca=request.form['marca']                  
+    a.modelo=request.form['modelo']                 
+    a.color= request.form['color']
+    a.año= request.form['año']
+    a.transmicion=request.form['transmicion']
+    if editar==1:
+        a.idAutomovil= int(request.form['id'])                             
+        a.actualizar()
+        flash('Auto editado con exito')                       
+    else:             
+            a.registrar()
+            flash('Auto registrado exitosamente')
+            
+    return  editarAutos(a.idAutomovil)
+    
+      
+@app.route('/autos/<int:id>')
+def eliminarAutos(id):
+    a=Autos()
+    a.eliminar(id)
+    flash('Servicio eliminado con exito')        
+    return  autos()
+
+
+
+
+
+
 
 # Enrutamiento a Mecanicos
 @app.route('/mecanicos')
@@ -249,3 +306,4 @@ def formularioProductos():
 if __name__=='__main__':
     db.init_app(app)
     app.run(debug=True)
+    

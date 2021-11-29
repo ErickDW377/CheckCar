@@ -2,40 +2,48 @@
 
 <body class="fondo">
   <header class="encabezado txt-encabezado">Formulario auto</header>
-  <form class="form" action="/autos">
+  {% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  
+  <form class="form" action="/autos/guardar/{{editar}}" method="post" enctype="multipart/form-data">
     <div>
       ID:
-      <input type="number" placeholder="id" name="id" required />
+      <input type="number" placeholder="id" name="id"  value="{{autos.idCliente}}" required />
     </div>
 
     <div>
       Cliente:
-      <input type="text" placeholder="Nombre del cliente" name="cliente" required />
+      <input type="text" placeholder="Nombre del cliente" name="cliente" value="{{autos.idAutomovil}}" required />
     </div>
 
     <div>
       Placa:
-      <input type="text" placeholder="Placa" name="placa" required />
+      <input type="text" placeholder="Placa" name="placa"  value="{{autos.placa}}" required />
     </div>
 
     <div>
       Marca:
-      <input type="text" placeholder="Marca" name="marca" required />
+      <input type="text" placeholder="Marca" name="marca" value="{{autos.marca}}" required />
     </div>
 
     <div>
       Modelo:
-      <input type="text" placeholder="Modelo" name="modelo" required />
+      <input type="text" placeholder="Modelo" name="modelo" value="{{autos.modelo}}" required />
     </div>
 
     <div>
       Año:
-      <input type="number" placeholder="Año" name="año" required />
+      <input type="number" placeholder="Año" name="año" value="{{autos.año}}" required />
     </div>
 
     <div>
       Color:
-      <input type="text" placeholder="Color del carro" name="color" />
+      <input type="text" placeholder="Color del carro" name="color" value="{{autos.color}}" required />
     </div>
 
     <div>

@@ -1,4 +1,7 @@
 from enum import unique
+
+from sqlalchemy.sql.expression import column
+from sqlalchemy.sql.sqltypes import VARCHAR
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column,Integer,String,Date,Float,ForeignKey,Boolean
 from sqlalchemy.orm import relationship
@@ -124,8 +127,7 @@ class Usuario(UserMixin,db.Model):
     def validar(self,email,passw):
         usuario=None
         usuario=self.query.filter(Usuario.email==email,Usuario.password==passw,Usuario.estatus==True).first()
-        return usuario
-
+        return usuario         
     #Metodos relacionados al perfilamiento
     def is_authenticated(self):
         return True
@@ -150,4 +152,34 @@ class Usuario(UserMixin,db.Model):
             return True
         else:
             return False
-     
+        
+class Autos(db.Model):
+    __tablename__='Automovil'
+    idAutomovil=Column(Integer,primary_key=True)
+    idCliente = Column(Integer,nullable= False)
+    placa = Column( String(20),nullable= False)
+    marca = Column(String(20), nullable= False)
+    modelo= Column(String(20), nullable= False)
+    color= Column(String (15), nullable= False)
+    año= Column(Date,nullable= False)
+    transmicion= Column(String(15), nullable= False)
+    
+    def registrar (self):
+        db.session.add(self)
+        db.session.commit()
+    
+    def consultar (self,id):
+       return self.query.get(id)
+    
+    def consultarAll(self):        
+       return self.query.all()
+   
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+   
+    def eliminar(self,id):
+       objeto=self.consultar(id)
+       db.session.delete(objeto)
+       db.session.commit()
+        
