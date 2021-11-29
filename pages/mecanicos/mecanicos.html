@@ -1,7 +1,14 @@
 {% extends 'componentes/paginaMenu.html' %} {%block encabezado%}
 <div class="encabezado txt-encabezado">Mecánicos</div>
 {%endblock%} {%block cuerpo%}
-
+{% if get_flashed_messages()%}
+        {% for m in get_flashed_messages()%}
+        <div class="alert alert-success alert-dismissible alertas-txt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{m}}</strong>
+        </div>
+        {% endfor %}
+  {% endif %}
 <section class="contenedor">
   <div class="slot-start padding">
     <img src="{{url_for('static',filename='images/mecanicos.png')}}" />
@@ -38,22 +45,23 @@
       <th></th>
     </thead>
 
-    {%for obj in ['Erick', 'Yuvia', 'Julian', 'Erandi']%}
+    {%for obj in mecanicos%}
     <tr>
-      <td>123</td>
-      <td>{{obj}}</td>
-      <td>11-04-00</td>
-      <td>M</td>
-      <td>351-152-0609</td>
-      <td>Domicilio de {{obj}}</td>
-      <td>Colonia de {{obj}}</td>
-      <td>Municipio de {{obj}}</td>
-      <td>Estado de {{obj}}</td>
-      <td>CP de {{obj}}</td>
-      <td>Contratado el dia...</td>
-      <td>Mecanico {{obj}}</td>
-      <td>NSS {{obj}}</td>
-      <td>RFC {{obj}}</td>
+      <td>{{obj.idEmpleado}}</td>
+      <td>{{obj.nombre}</td>
+      <td>{{obj.nacimiento}}</td>
+      <td>{{obj.sexo}}</td>
+      <td>{{obj.telefono}}</td>
+      <td>{{obj.domicilio}}</td>
+      <td>{{obj.colonia}}</td>
+      <td>{{obj.municipio}}</td>
+      <td>{{obj.estado}}</td>
+      <td>{{obj.cp}}</td>
+      <td>${{obj.contratacion}}</td>
+      <td>${{obj.puesto}}</td>
+      <td>${{obj.nss}}</td>
+      <td>${{obj.rfc}}</td>
+      {% if current_user.is_authenticated  and current_user.is_admin() %}
       <td>
         <a href="/formularioMecanicos">
           <button class="boton-icono-only">
@@ -75,6 +83,30 @@
         </a>
       </td>      
     </tr>
+    <div id="eliminar{{obj.idEmpleado}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Confirmacion de proceso</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Estas seguro de eliminar el registro: {{obj.idEmpleado}} ?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="/mecanicos/{{obj.idEmpleado}}" class="btn btn-info"
+              >Aceptar</a
+            >
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </table>
 </section>

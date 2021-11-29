@@ -183,3 +183,44 @@ class Productos(db.Model):
         objeto=self.consultar(id)
         db.session.delete(objeto)
         db.session.commit() 
+
+class Mecanicos(db.Model):
+    __tablename__='mecanicos'
+    idEmpleado = Column(Integer, primary_key=True)
+    nombre = Column(String(25),nullable=False)
+    apellidoPaterno = Column(String(20),nullable=False)    
+    apellidoMaterno = Column(String(20),nullable=False)    
+    fechaNac = Column(Date, nullable= False)
+    sexo = Column(String(1),nullable=False)
+    telefono = Column(String(12), nullable= False)
+    calle = Column(String(30), nullable= False)
+    numExt = Column(Integer, nullable= False)
+    numInt = Column(String(2), nullable= False)
+    colonia = Column(String(20), nullable= False)   
+    municipio = Column(String(20), nullable= False)
+    estado = Column(String(20), nullable= False)
+    cp = Column(String(5), nullable= False)
+    fechaContrato = Column(Date, nullable= False)
+    puesto = Column(String(20), nullable= False)   
+    numSeguroS = Column(String(18))
+    rfc = Column(String(13))
+
+    def registrar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def consultar(self,id):
+        return self.query.get(id)
+
+    def consultarAll(self):        
+        return self.query.all()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto=self.consultar(id)
+        db.session.delete(objeto)
+        db.session.commit()
+    
