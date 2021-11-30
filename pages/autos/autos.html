@@ -16,9 +16,7 @@
     <img src="{{url_for('static',filename='images/autos.png')}}" />
   </div>
   {% if current_user.is_authenticated  and current_user.is_admin() %} 
-
-  <div 
-  class="alineacion">
+  <div class="alineacion">
     <a href="/formularioAutos">
       <button class="boton-icono">
         <img src="{{url_for('static',filename='images/registrar.png')}}" />
@@ -71,7 +69,7 @@
         </a>
       </td>
       <td>
-        <a href="/autos">
+        <a href="/servicios">
           <button class="boton-icono-only">
             <img class="icon-auto"
              src="{{url_for('static',filename='images/servicios-icono.png')}}" />
@@ -122,4 +120,5 @@
     {% endfor %}
   </table>
 </section>
+
 {%endblock%}
