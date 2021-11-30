@@ -222,3 +222,36 @@ class Mecanicos(db.Model):
         objeto=self.consultar(id)
         db.session.delete(objeto)
         db.session.commit()
+
+class Productos(db.Model):
+    _tablename_ = 'productos'
+    idProducto = Column(Integer, primary_key=True)
+    nombre = Column(String(25), nullable= False)
+    marca = Column(String(25), nullable= False)   
+    modelo = Column(String(25), nullable= False)   
+    tipo = Column(String(25), nullable= False)
+    anaquel = Column(Integer, nullable= False)
+    estante = Column(Integer, nullable= False)
+    costo = Column(Float,nullable= False)
+    precio = Column(Float,nullable= False)
+    descripcion = Column(String(300),unique=False)    
+    unidades = Column(Integer, nullable= False)
+
+    def registrar(self):        
+        db.session.add(self)
+        db.session.commit()
+    
+    def consultar(self,id):
+        return self.query.get(id)
+
+    def consultarAll(self):        
+        return self.query.all()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto=self.consultar(id)
+        db.session.delete(objeto)
+        db.session.commit()
