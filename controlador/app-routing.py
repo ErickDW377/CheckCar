@@ -136,9 +136,7 @@ def registrarAutos():
     a.año= ''
     a.transmicion= ''
     return render_template(
-        'autos/autos-formulario.html',
-         autos=a,
-         editar=0 
+        'autos/autos-formulario.html',autos=a,editar=0 
     )
 @app.route ('/formularioAutos/<int:id>')
 def editarAutos(id):
@@ -173,7 +171,7 @@ def guardarAutos(editar):
 def eliminarAutos(id):
     a=Autos()
     a.eliminar(id)
-    flash('Servicio eliminado con exito')        
+    flash('Auto eliminado con exito')        
     return  autos()
 
 

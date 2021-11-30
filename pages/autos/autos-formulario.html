@@ -9,16 +9,16 @@
             <strong>{{m}}</strong>
         </div>
         {% endfor %}
-  
+        {% endif %}
   <form class="form" action="/autos/guardar/{{editar}}" method="post" enctype="multipart/form-data">
     <div>
       ID:
-      <input type="number" placeholder="id" name="id"  value="{{autos.idCliente}}" required />
+      <input type="number" placeholder="id" name="id"  value="{{autos.idAutomovil}}" required />
     </div>
 
     <div>
       Cliente:
-      <input type="text" placeholder="Nombre del cliente" name="cliente" value="{{autos.idAutomovil}}" required />
+      <input type="number" placeholder="Nombre del cliente" name="cliente" value="{{autos.idCliente}}" required />
     </div>
 
     <div>
@@ -47,19 +47,11 @@
     </div>
 
     <div>
-      <fieldset>
-        <legend>Tansmision</legend>
-        <div>
-          
-            <input type="radio" name="transmision" value="Automatico"> Automatico
-          
-        </div>
-        <div>
-          
-            <input type="radio" name="transmision" value="Manual"> Manual
-          
-        </div>
-      </fieldset>
+      Transmicion:      
+      <select name="transmicion" >
+        <option  value="automatico">Automatico</option>      
+        <option  value="manual"> Manual</option>                   
+    </select>
     </div>
 
     <div>
