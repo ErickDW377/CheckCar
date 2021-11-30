@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 from sqlalchemy.sql.elements import Null
 from sqlalchemy.sql.expression import select
 from sqlalchemy.sql.sqltypes import String
-from DAO import db, Servicios, Usuario, Clientes,Autos
+from DAO import db, Servicios, Usuario, Clientes,Autos, Mecanicos
 from flask_login import LoginManager,current_user,login_required,login_user,logout_user
 
 
@@ -39,6 +39,7 @@ def validarUsuario():
     email=request.form['email']
     password=request.form['password']
     user=user.validar(email,password)
+    print("Hola");
     if user!=None:
         login_user(user)
         return inicio()
@@ -177,18 +178,89 @@ def eliminarAutos(id):
 
 
 
-
-
-
-
 # Enrutamiento a Mecanicos
 @app.route('/mecanicos')
-def mecanicos():    
-    return  render_template('mecanicos/mecanicos.html')
+def mecanicos():
+    m = Mecanicos()
+    mecanicos = m.consultarAll()    
+    return  render_template('mecanicos/mecanicos.html', mecanicos = mecanicos)
 
 @app.route('/formularioMecanicos')
-def formularioMecanicos():    
-    return  render_template('mecanicos/mecanicos-formulario.html')
+def registrarMecanicos():  
+        m=Mecanicos()
+        m.nombre = ''
+        m.apellidoPaterno = ''
+        m.apellidoMaterno = ''
+        m.sexo = ''
+        m.telefono = ''
+        m.calle = ''
+        m.numExt = 0
+        m.numInt = ''   
+        m.colonia = ''  
+        m.municipio = ''
+        m.estado = ''
+        m.cp = ''
+        m.puesto = ''
+        m.numSeguroS = ''
+        m.rfc = ''
+        return  render_template(
+        'mecanicos/mecanicos-formulario.html',
+        mecanicos = m,
+        editar = 0)
+
+@app.route('/formularioMecanicos/<int:id>')
+def editarMecanicos(id):
+    m=Mecanicos()        
+    return  render_template(
+        'mecanicos/mecanicos-formulario.html',
+         mecanicos = m.consultar(id),
+         editar=1)
+
+@app.route('/mecanicos/guardar/<int:editar>',methods=['post'])
+def guardarMecanicos(editar): 
+        m=Mecanicos()        
+        m.nombre =request.form['nombre']
+        m.apellidoPaterno = request.form['apellidoPaterno']
+        m.apellidoMaterno = request.form['apellidoMaterno']
+        m.fechaNac = request.form['fechaNac'] 
+        m.sexo = request.form['sexo']
+        m.telefono = request.form['telefono']
+        m.calle = request.form['calle']
+        m.numExt = request.form['numExt']
+        m.numInt = request.form['numInt']
+        m.colonia = request.form['colonia']  
+        m.municipio = request.form['municipio']
+        m.estado = request.form['estado']
+        m.cp = request.form['cp']
+        m.fechaContrato = request.form['contratacion']
+        m.puesto = request.form['puesto']
+        m.numSeguroS = request.form['nss']
+        m.rfc = request.form['rfc']   
+        if editar==1:
+            m.idEmpleado= int(request.form['id'])                             
+            m.actualizar()
+            flash('Mecanico editado con exito')                       
+        else:             
+            m.registrar()
+            flash('Mecanico registrado exitosamente')
+        return  editarMecanicos(m.idEmpleado)
+
+@app.route('/mecanicos/<int:id>')
+def eliminarMecanico(id):
+    m=Mecanicos()
+    m.eliminar(id)
+    flash('Mecanico eliminado con exito')        
+    return  mecanicos()
+
+
+
+
+
+
+
+
+
+
 
 # Enrutamiento a Clientes
 @app.route('/clientes')
@@ -292,6 +364,24 @@ def eliminarClientes(id):
     c.eliminar(id)
     flash('Cliente eliminado con exito')        
     return  clientes()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Enrutamiento a Productos
 @app.route('/productos')

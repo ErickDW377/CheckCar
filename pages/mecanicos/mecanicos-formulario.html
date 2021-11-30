@@ -9,7 +9,7 @@
         </div>
         {% endfor %}
   {% endif %}
-  <form class="form" action="/formularioMecanicos/guardar/{{editar}}/{{url}}" method="post" enctype="multipart/form-data">
+  <form class="form" action="/mecanicos/guardar/{{editar}}" method="post" enctype="multipart/form-data">
     <div>
       idEmpleado:
       <input type="number" placeholder="id" name="id" value="{{mecanicos.idEmpleado}}"  />
@@ -17,28 +17,29 @@
 
     <div>
       Nombre:
-      <input type="text" placeholder="Nombre" name="nombre" value="{{mecanicos.idNombre}}"  />
+      <input type="text" placeholder="Nombre" name="nombre" value="{{mecanicos.nombre}}"  />
+    </div>
+    <div>
+      Apellido Paterno:
+      <input type="text" placeholder="Apellido Paterno" name="apellidoPaterno" value="{{mecanicos.apellidoPaterno}}"  />
+    </div>
+
+    <div>
+      Apellido Materno:
+      <input type="text" placeholder="Apellido Materno" name="apellidoMaterno" value="{{mecanicos.apellidoMaterno}}"  />
     </div>
 
     <div>
       Nacimiento:
-      <input type="date" placeholder="Fecha de nacimiento" name="nacimiento" value="{{mecanicos.nacimiento}}"  />
+      <input type="date" placeholder="Fecha de nacimiento" name="fechaNac" value="{{mecanicos.fechaNac}}"  />
     </div>
 
     <div>
-      <fieldset>
-        <legend>Sexo:</legend>
-        <div>
-          
-            <input type="radio" name="sexo" value="Masculino"> M
-          
-        </div>
-        <div>
-          
-            <input type="radio" name="sexo" value="Femenino"> F
-          
-        </div>
-      </fieldset>
+      Sexo:      
+      <select name="sexo" >
+        <option  value="M">Masculino</option>      
+        <option  value="F">Femenino</option>                   
+    </select>
     </div>
 
     <div>
@@ -48,47 +49,59 @@
 
     <div>
       Domicilio:
-      <input type="text" placeholder="Domicilio" name="domicilio" />
+      <input type="text" placeholder="Domicilio" name="calle" value="{{mecanicos.calle}}"/>
     </div>
 
     <div>
+      Numero Exterior:
+      <input type="number" placeholder="numExt" name="numExt" value="{{mecanicos.numExt}}"/>
+    </div>
+
+    <div>
+      Numero Interior:
+      <input type="text" placeholder="numInt" name="numInt" value="{{mecanicos.numInt}}" />
+    </div>
+
+    
+
+    <div>
       Colonia:
-      <input type="text" placeholder="Colonia" name="colonia" value="{{mecanicos.colonia}}/>
+      <input type="text" placeholder="Colonia" name="colonia" value="{{mecanicos.colonia}}"/>
     </div>
 
     <div>
       Estado:
-      <input type="text" placeholder="Estado" name="estado" value="{{mecanicos.estado}} />
+      <input type="text" placeholder="Estado" name="estado" value="{{mecanicos.estado}}"/>
     </div>
 
     <div>
       Municipio:
-      <input type="text" placeholder="Municipio" name="municipio" value="{{mecanicos.municipio}}/>
+      <input type="text" placeholder="Municipio" name="municipio" value="{{mecanicos.municipio}}"/>
     </div>
 
     <div>
       CP:
-      <input type="number" placeholder="Código Postal" name="cp" value="{{mecanicos.cp}}/>
+      <input type="number" placeholder="Código Postal" name="cp" value="{{mecanicos.cp}}"/>
     </div>
 
     <div>
       Contratación:
-      <input type="date" placeholder="Fecha de contrato" name="contratacion" value="{{mecanicos.fechacontrato}} />
+      <input type="date" placeholder="Fecha de contrato" name="contratacion" value="{{mecanicos.fechaContrato}}"/>
     </div>
 
     <div>
       Puesto:
-      <input type="text" placeholder="Puesto" name="puesto" value="{{mecanicos.puesto}} />
+      <input type="text" placeholder="Puesto" name="puesto" value="{{mecanicos.puesto}}"/>
     </div>
 
     <div>
       NSS:
-      <input type="text" placeholder="Número de seguro social" name="nss" value="{{mecanicos.numSeguroS}}/>
+      <input type="text" placeholder="Número de seguro social" name="nss" value="{{mecanicos.numSeguroS}}"/>
     </div>
 
     <div>
       RFC:
-      <input type="text" placeholder="RFC" name="rfc" value="{{mecanicos.rfc}}/>
+      <input type="text" placeholder="RFC" name="rfc" value="{{mecanicos.rfc}}"/>
     </div>
 
     <div>
