@@ -8,7 +8,7 @@ from flask_login import LoginManager,current_user,login_required,login_user,logo
 
 
 
-app=Flask(_name_,template_folder='../pages',static_folder='../static')
+app=Flask(__name__,template_folder='../pages',static_folder='../static')
 Bootstrap(app)
 
 app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:Hola.123@127.0.0.1/checkCar'
@@ -429,7 +429,7 @@ def eliminarProductos(id):
     return  productos()
 
 
-if _name=='main_':
+if __name__=='__main__':
     db.init_app(app)
     app.run(debug=True)
     
