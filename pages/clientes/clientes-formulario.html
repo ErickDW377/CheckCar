@@ -38,15 +38,15 @@
     {% if current_user.is_authenticated  and current_user.is_admin() %}
     <div>
       Tipo:      
-      <select name="tipo" >
-        <option  value="cliente">Cliente</option>      
+      <select name="tipo">
+        <option  value="cliente" >Cliente</option>      
         <option  value="administrador">Administrador</option>                   
     </select>
     </div>
     
     <div>
       Estatus:
-      <input type="checkbox" name="estatus" value="True">
+      <input type="checkbox" name="estatus" value='{{usuarios.estatus}}' checked='{{usuarios.estatus}}'>
     </div>
     {% endif %}
 

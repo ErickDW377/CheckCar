@@ -161,7 +161,7 @@ class Autos(db.Model):
     marca = Column(String(20), nullable= False)
     modelo= Column(String(20), nullable= False)
     color= Column(String (15), nullable= False)
-    año= Column(Date,nullable= False)
+    año= Column(String(4),nullable= False)
     transmicion= Column(String(15), nullable= False)
     
     def registrar (self):

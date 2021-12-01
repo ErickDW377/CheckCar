@@ -125,8 +125,7 @@ def autos():
 
 @app.route('/formularioAutos')  
 def registrarAutos():
-    a=Autos()
-    a.idAutomovil= 0
+    a=Autos()    
     a.idCliente= 0
     a.placa= ''
     a.marca= ''

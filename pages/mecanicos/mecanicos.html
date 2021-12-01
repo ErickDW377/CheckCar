@@ -48,18 +48,18 @@
     {%for obj in mecanicos%}
     <tr>
       <td>{{obj.idEmpleado}}</td>
-      <td>{{obj.nombre}}</td>
-      <td>{{obj.nacimiento}}</td>
+      <td>{{obj.nombre}} {{obj.apellidoPaterno}} {{obj.apellidoMaterno}}</td>
+      <td>{{obj.fechaNac}}</td>
       <td>{{obj.sexo}}</td>
       <td>{{obj.telefono}}</td>
-      <td>{{obj.domicilio}}</td>
+      <td>{{obj.calle}} #{{obj.numExt}} {{obj.numInt}}</td>
       <td>{{obj.colonia}}</td>
       <td>{{obj.municipio}}</td>
       <td>{{obj.estado}}</td>
       <td>{{obj.cp}}</td>
-      <td>{{obj.contratacion}}</td>
+      <td>{{obj.fechaContrato}}</td>
       <td>{{obj.puesto}}</td>
-      <td>{{obj.nss}}</td>
+      <td>{{obj.numSeguroS}}</td>
       <td>{{obj.rfc}}</td>
       <td>
         <a href="/formularioMecanicos/{{obj.idEmpleado}}">
@@ -72,16 +72,21 @@
         </a>        
       </td>
       <td>
-        <a>
-          <button class="boton-icono-only">
-            <img
-              class="icon-auto"
-              src="{{url_for('static',filename='images/eliminar.png')}}"
-            />
-          </button>
-        </a>
+        <button
+          class="boton-icono-only"
+          type="button"
+          data-toggle="modal"
+          data-target="#eliminar{{obj.idEmpleado}}"
+          class="btn btn-info"
+        >
+          <img
+            class="icon-auto"
+            src="{{url_for('static',filename='images/eliminar.png')}}"
+          />
+        </button> 
       </td>      
     </tr>
+    <!-- Modal -->
     <div id="eliminar{{obj.idEmpleado}}" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
