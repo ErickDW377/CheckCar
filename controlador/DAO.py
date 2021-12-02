@@ -74,8 +74,10 @@ class Clientes(db.Model):
 
     def eliminar(self,id):
         objeto=self.consultar(id)
-        db.session.delete(objeto)
+        db.session.delete(objeto)                
         db.session.commit()
+        usuario = Usuario()
+        usuario.eliminar(objeto.idUsuario)
 
     def buscarXusuario(self,usuario):
         return self.query.filter(Clientes.idUsuario == usuario).first()
@@ -92,9 +94,7 @@ class Clientes(db.Model):
     def getEmail(self):        
         u = self.getUsuario()
         return u.email
-
-
-
+    
 class Usuario(UserMixin,db.Model):
     __tablename__='Usuarios'
     idUsuario=Column(Integer,primary_key=True)
@@ -112,8 +112,9 @@ class Usuario(UserMixin,db.Model):
     def consultar(self,id):
         return self.query.get(id)
 
-    def consultarAll(self):        
-        return self.query.all()
+    def consultarAll(self, tipo):        
+        usuarios = self.query.filter(Usuario.tipo==tipo)
+        return usuarios
 
     def actualizar(self):
         db.session.merge(self)
@@ -127,7 +128,13 @@ class Usuario(UserMixin,db.Model):
     def validar(self,email,passw):
         usuario=None
         usuario=self.query.filter(Usuario.email==email,Usuario.password==passw,Usuario.estatus==True).first()
-        return usuario         
+        return usuario
+
+    def buscarCliente(self):
+        cliente = Clientes()
+        cliente = cliente.buscarXusuario(self.idUsuario)
+        return cliente.idCliente
+
     #Metodos relacionados al perfilamiento
     def is_authenticated(self):
         return True
@@ -152,6 +159,7 @@ class Usuario(UserMixin,db.Model):
             return True
         else:
             return False
+    
         
 class Autos(db.Model):
     __tablename__='Automovil'

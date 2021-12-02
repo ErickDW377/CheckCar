@@ -14,53 +14,42 @@
     <img src="{{url_for('static',filename='images/clientes.png')}}" />
   </div>
   <div class="alineacion">
-    <a href="/formularioClientes/clientes">
+    <a href="/formularioUsuarios/usuarios">
       <button class="boton-icono">
         <img src="{{url_for('static',filename='images/registrar.png')}}" />
-        <label class="slot-end padding-center"> Registrar Clientes </label>
+        <label class="slot-end padding-center"> Registrar Usuario </label>
       </button>
     </a>
   </div>
 </section>
 
 <section class="slot-center padding-ch">
-  <h2 class="txt-encabezado2">Listado de clientes</h2>
+  <h2 class="txt-encabezado2">Listado de Usuarios</h2>
   <table>
     <thead class="slot-center">
       <th>Id</th>
-      <th>Usuario</th>
-      <th>Empresa</th>
-      <th>Telefono</th>
+      <th>Nombre</th>
+      <th>Nombre de usuario</th>
       <th>Email</th>
-      <th>Calle</th>
-      <th>NumExt</th>
-      <th>NumInt</th>
-      <th>Colonia</th>
-      <th>Municipio</th>
-      <th>Estado</th>
-      <th>Cp</th>
+      <th>Password</th>
+      <th>Tipo</th>
+      <th>Activo</th>      
       <th></th>
-      <th></th>
-      <th></th>
+      <th></th>      
     </thead>
 
-    {%for obj in clientes%}
+    {%for obj in usuarios%}
     <tr>
-      <td>{{obj.idCliente}}</td>
-      <td>{{obj.getNombre()}}</td>
-      <td>{{obj.empresa}}</td>
-      <td>{{obj.telefono}}</td>
-      <td>{{obj.getEmail()}}</td>
-      <td>{{obj.calle}}</td>
-      <td>{{obj.numExt}}</td>
-      <td>{{obj.numInt}}</td>
-      <td>{{obj.colonia}}</td>
-      <td>{{obj.municipio}}</td>
-      <td>{{obj.estado}}</td>
-      <td>{{obj.cp}}</td>
+      <td>{{obj.idUsuario}}</td>
+      <td>{{obj.nombre}}</td>
+      <td>{{obj.userName}}</td>
+      <td>{{obj.email}}</td>
+      <td>{{obj.password}}</td>
+      <td>{{obj.tipo}}</td>
+      <td>{{obj.estatus}}</td>      
       <td>
         <a
-          href="/formularioClientes/{{obj.idCliente}}/clientes"
+          href="/formularioUsuarios/{{obj.idUsuario}}/usuarios"
         >
           <button class="boton-icono-only">
             <img
@@ -69,23 +58,13 @@
             />
           </button>
         </a>
-      </td>
-      <td>
-        <a href="/autos">
-          <button class="boton-icono-only">
-            <img
-              class="icon-auto"
-              src="{{url_for('static',filename='images/autos-icono.png')}}"
-            />
-          </button>
-        </a>
-      </td>
+      </td>      
       <td>
         <button
           class="boton-icono-only"
           type="button"
           data-toggle="modal"
-          data-target="#eliminar{{obj.idCliente}}"
+          data-target="#eliminar{{obj.idUsuario}}"
           class="btn btn-info"
         >
           <img
@@ -96,7 +75,7 @@
       </td>
     </tr>
     <!-- Modal -->
-    <div id="eliminar{{obj.idCliente}}" class="modal fade" role="dialog">
+    <div id="eliminar{{obj.idUsuario}}" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -107,10 +86,10 @@
             <h4 class="modal-title">Confirmacion de proceso</h4>
           </div>
           <div class="modal-body">
-            <p>¿Estas seguro de eliminar el registro: {{obj.idCliente}} ?</p>
+            <p>¿Estas seguro de eliminar el registro: {{obj.idUsuario}} ?</p>
           </div>
           <div class="modal-footer">
-            <a href="/clientes/{{obj.idCliente}}" class="btn btn-info"
+            <a href="/usuarios/{{obj.idUsuario}}" class="btn btn-info"
               >Aceptar</a
             >
             <button type="button" class="btn btn-default" data-dismiss="modal">

@@ -18,9 +18,15 @@
       </a>
       <ul class="dropdown-menu">
         <li>
-          <a href="/formularioClientes/0/{{current_user.idUsuario}}/inicio">
+          {% if current_user.is_admin() %}
+          <a href="/formularioUsuarios/{{current_user.idUsuario}}/inicio">
             <span class="glyphicon glyphicon-edit"></span> Editar Perfil</a
           >
+          {% else %}
+          <a href="/formularioClientes/{{current_user.buscarCliente()}}/inicio">
+            <span class="glyphicon glyphicon-edit"></span> Editar Perfil</a
+          >
+          {% endif %}
         </li>
         <li>
           <a href="/cerrarSesion"
@@ -48,6 +54,7 @@
     {% if current_user.is_admin() %}
     <label class="padding"><a href="/mecanicos"> Mecanicos </a></label>
     <label class="padding"><a href="/productos"> Productos </a></label>
+    <label class="padding"><a href="/usuarios"> Usuarios </a></label>
     <label class="padding"><a href="/clientes"> Clientes </a></label>
     {% endif %}    
     <label class="padding"><a href="/autos"> Autos </a></label>
