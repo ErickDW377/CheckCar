@@ -32,7 +32,11 @@
 
     <div>
       Email:
-      <input type="text" placeholder="email" name="email" id="email" value='{{usuarios.email}}'  onblur='consultarEmail()' />
+      {% if editar==1 %}
+          <input type="text" placeholder="email" name="email" id="email" value='{{usuarios.email}}'  />
+       {% else %}
+          <input type="text" placeholder="email" name="email" id="email" value='{{usuarios.email}}'  onblur='consultarEmail()' />
+{% endif %}
     </div>
 
     <div>
