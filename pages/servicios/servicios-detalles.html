@@ -1,30 +1,35 @@
 {% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 <body class="fondo">
   <header class="encabezado txt-encabezado">Detalles Servicio</header>
-  <form class="form" action="/formularioServicios">
+  <form class="form" action="/detallesServicios/guardar" method="post" enctype="multipart/form-data">
     <div>
       Id servicio:
-      <input type="number" placeholder="id servicio" name="id" disabled />
+      <input type="number" placeholder="id servicio" name="id" value={{servicio}}  />
     </div>
 
     <div>
       Producto:
-      <input type="text" placeholder="Producto" name="producto" required />
+      <select id="producto" name="producto" onchange="productoSeleccionado()"> 
+        <option value="0">Selecciona un producto</option>        
+        {% for c in productos %}        
+            <option value="{{c.idProducto}}">{{c.nombre}}</option>        
+        {% endfor %}
+      </select>
     </div>
 
     <div>
       Cantidad:
-      <input type="number" placeholder="Cantidad de productos" name="cantidad" required />
+      <input id="cantidad" type="number" placeholder="Cantidad de productos" name="cantidad" onchange="calcularTotal()" required />
     </div>
 
     <div>
       Costo:
-      <input type="number" placeholder="Costo unitario" name="costo" disabled />
+      <input id="costo" type="number" placeholder="Costo unitario" name="costo"  />
     </div>
 
     <div>
       Total:
-      <input type="number" placeholder="Costo total" name="total" disabled />
+      <input id="total" type="number" placeholder="Costo total" name="total"/>
     </div>
 
     <div>
@@ -34,21 +39,25 @@
 
     <div>
       Mecanico:
-      <input type="text" placeholder="Nombre del mecánico" name="mecanico" required />
+      <select id="mecanico" name="mecanico" > 
+        <option value="0">Selecciona un mecanico</option>        
+        {% for c in mecanicos %}        
+            <option value="{{c.idEmpleado}}">{{c.nombre}} {{c.apellidoPaterno}} {{c.apellidoMaterno}}</option>        
+        {% endfor %}
+      </select>
     </div>
 
     <div>
       <button type="submit"> Guardar </button>
     </div>
     <div>
-      <a href="/formularioServicios">
+      <a href="/formularioServicios/1">
         <button class="color-danger" type="button">Cancelar</button>
       </a>
     </div>
-
-
   </form>
 
+  <script src="{{url_for('static', filename='js/detalle.js')}}"></script>
 
 </body>
 {% endblock%}

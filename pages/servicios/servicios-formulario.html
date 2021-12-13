@@ -1,5 +1,8 @@
 {% extends 'componentes/paginaMenu.html' %} {% block contenedor%}
 <body class="fondo">
+
+  
+
   <header class="encabezado txt-encabezado">Formulario Servicio</header>
   {% if get_flashed_messages()%}
         {% for m in get_flashed_messages()%}
@@ -12,17 +15,58 @@
   <form class="form" action="/servicios/guardar/{{editar}}" method="post" enctype="multipart/form-data">
     <div>
       ID:
-      <input type="number" placeholder="id" name="id" value="{{servicios.idServicio}}"/>      
+      <input id='id' type="number" placeholder="id" name="id" value="{{servicios.idServicio}}" />      
     </div>
-
+    {% if editar==1 %}
     <div>
       Auto:
       <input type="number" placeholder="Auto" name="auto" required value="{{servicios.idAutomovil}}"/>
     </div>
+    {% else %}
+    <div>
+      Auto:
+      <select id="auto" name="auto" > 
+        <option value="0">Selecciona un auto</option>        
+        {% for c in autos %}        
+            <option value="{{c.idAutomovil}}">
+              {{c.consultarCliente()}}
+              <p>{{c.marca}} {{c.modelo}} {{c.año}}</p>              
+            </option>        
+        {% endfor %}
+      </select>
+    </div>
+    {% endif %}
+
 
     <div>
       Tipo:
-      <input type="text" placeholder="Tipo" name="tipo" required value="{{servicios.tipo}}"/>
+      <select id="tipo" name="tipo" >                
+          {% if servicios.tipo == "mayor" %}      
+          <option value="mayor">Servicio Mayor</option>        
+          <option value="menor">Servicio Menor</option>
+          <option value="diagnostico">Servicio Diagnostico</option>
+          <option value="especial">Servicio especial</option>
+          {% else %}
+            {% if servicios.tipo == "menor" %}
+            <option value="menor">Servicio Menor</option>
+            <option value="mayor">Servicio Mayor</option>           
+            <option value="diagnostico">Servicio Diagnostico</option>
+            <option value="especial">Servicio especial</option>
+            {% else %}
+              {% if servicios.tipo == "diagnostico" %}
+              <option value="diagnostico">Servicio Diagnostico</option>
+              <option value="menor">Servicio Menor</option>
+              <option value="mayor">Servicio Mayor</option>              
+              <option value="especial">Servicio especial</option>
+              {% else %}
+              <option value="especial">Servicio especial</option>
+              <option value="diagnostico">Servicio Diagnostico</option>
+              <option value="menor">Servicio Menor</option>
+              <option value="mayor">Servicio Mayor</option>              
+              {% endif %}
+            {% endif %}
+          {% endif %}
+      </select>
     </div>
 
     <div>
@@ -52,26 +96,79 @@
 
     <div>
       Estatus:
-      <input type="text" placeholder="Estatus del servicio" name="estatus" value="{{servicios.estatus}}"/>
-    </div>
-
+      <select id="estatus" name="estatus" >                
+        {% if servicios.estatus == "c" %}      
+        <option value="c">Completo</option>        
+        <option value="e">En espera</option>
+        <option value="r">En reparacion</option>
+        <option value="f">Finalizado</option>
+        {% else %}
+          {% if servicios.estatus == "f" %}
+          <option value="f">Finalizado</option>
+          <option value="e">En espera</option>
+          <option value="c">Completo</option>        
+          <option value="r">En reparacion</option>  
+          {% else %}
+            {% if servicios.estatus == "r" %}
+            <option value="r">En reparacion</option>
+            <option value="e">En espera</option>
+            <option value="c">Completo</option>            
+            <option value="f">Finalizado</option>
+            {% else %}
+            <option value="e">En espera</option>
+            <option value="c">Completo</option>        
+            <option value="r">En reparacion</option>
+            <option value="f">Finalizado</option>                                     
+            {% endif %}
+          {% endif %}
+        {% endif %}
+    </select>
+    </div>   
+    {%if  editar == 1%}
     <div>
-      Detalles:
-      <textarea placeholder="Detalles" name="detalles" cols="7" rows="10"></textarea>
-      <a href="/detallesServicios">
-        <button class="color-verde" type="button">Agregar detalles</button>
+      <a href="/detallesServicios/{{servicios.idServicio}}">
+        <button class="color-verde" type="button">Agregar Detalle</button>
       </a>
     </div>
+    <div>
+      Detalles:      
+      <table class="detalles">
+        <thead>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+          <th>Area de reparación</th>
+          <th>Mecanico</th>
+        </thead>
+        {%for obj in detalles %}  
+        <tr>
+          <td>{{obj.getProducto()}}</td>
+          <td>{{obj.cantidad}}</td>
+          <td>{{obj.costosU}}</td>
+          <td>{{obj.costoTotal}}</td>
+          <td>{{obj.areaReparacion}}</td>
+          <td>{{obj.idEmpleado}}</td>
+        </tr>
+        {% endfor %}
+      </table>      
+    </div>
+    {%endif%}
 
+    {% if editar==1 %}
+    
     <div>
       Mano de obra:
-      <input type="number" placeholder="Costo de mano de obra" name="manoObra" value="{{servicios.manoObra}}"/>
+      <input id="manoObra" type="number" placeholder="Costo de mano de obra" name="manoObra" value="{{servicios.manoObra}}" onchange="calcularTotal()"/>
     </div>
+    
 
     <div>
       Total:
-      <input type="number" placeholder="Costo total" name="total" value="{{servicios.total}}"/>
+      <input id="total" type="number" placeholder="Costo total" name="total" value="{{servicios.total}}"/>
     </div>
+
+    {% endif %}
 
     <div>
       <button type="submit"> Guardar </button>
@@ -85,6 +182,6 @@
 
   </form>
   
-
+  <script src="{{url_for('static', filename='js/servicios.js')}}"></script>
 </body>
 {% endblock%}

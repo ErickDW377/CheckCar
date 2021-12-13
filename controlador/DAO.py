@@ -43,6 +43,57 @@ class Servicios(db.Model):
         db.session.delete(objeto)
         db.session.commit()
 
+    def getDetalles(self):
+        detalles= Detalle()
+        return detalles.consultar(self.idServicio)
+        
+
+class Detalle(db.Model):
+    __tablename__= 'Detalles_Servicios'
+    idServicio = Column(Integer,  primary_key= True)
+    idProducto = Column(Integer, primary_key= True)
+    cantidad = Column(Integer, nullable= False)
+    costosU = Column(Float, nullable= False)
+    costoTotal = Column(Float, nullable= False)
+    areaReparacion = Column(String(30), nullable= False)
+    idEmpleado = Column(Integer, nullable= False)   
+
+    def registrar(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def consultar(self,id):
+        return self.query.filter(Detalle.idServicio==id)
+
+    def consultarAll(self):        
+        return self.query.all()
+
+    def actualizar(self):
+        db.session.merge(self)
+        db.session.commit()
+
+    def eliminar(self,id):
+        objeto=self.consultar(id)
+        db.session.delete(objeto)
+        db.session.commit()
+
+    def getProducto(self):
+        producto = Productos()
+        producto= producto.consultar(self.idProducto)
+        return producto.nombre
+
+    def getSuma(self, id):
+        salida={"estatus":"","suma":""} 
+        detalles = self.consultar(id)
+        suma = 0;
+        for detalle in detalles:
+            suma+= detalle.costoTotal
+
+        salida["estatus"]="OK"
+        salida["suma"]= suma       
+        return salida
+       
+
 
 class Clientes(db.Model):
     __tablename__ = 'Clientes'
@@ -191,6 +242,11 @@ class Autos(db.Model):
        db.session.delete(objeto)
        db.session.commit()
 
+    def consultarCliente(self):
+        cliente = Clientes()
+        cliente = cliente.consultar(self.idCliente)
+        return cliente.getNombre() + (cliente.empresa)
+
 class Mecanicos(db.Model):
     _tablename_='Mecanicos'
     idEmpleado = Column(Integer, primary_key=True)
@@ -262,4 +318,22 @@ class Productos(db.Model):
     def eliminar(self,id):
         objeto=self.consultar(id)
         db.session.delete(objeto)
+        db.session.commit()
+
+    def consultarPrecio(self,id):
+        salida={"estatus":"","precio":"","cantidad":""}        
+        producto = self.query.get(id)
+        if producto!=None:
+            salida["estatus"]="OK"
+            salida["precio"]= producto.precio
+            salida["cantidad"]= producto.unidades
+        else:
+            salida["estatus"]="ERROR"
+            salida["precio"]="Producto no encontrado"
+            salida["cantidad"]= 0
+        return salida
+
+    def restarUnidades(self,cantidad):
+        self.unidades -= cantidad
+        db.session.merge(self)
         db.session.commit()

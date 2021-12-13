@@ -59,7 +59,16 @@
       <td>{{obj.avance}}</td>
       <td>{{obj.garantia}}</td>
       <td>{{obj.estatus}}</td>
-      <td>{{obj}}</td>
+      <td>
+        {%for detalle in obj.getDetalles()%} 
+        <label>
+          {{detalle.cantidad}} {{detalle.getProducto()}} ${{detalle.costosU}}
+          ${{detalle.costoTotal}}
+          {{detalle .areaReparacion}}
+          {{detalle.idEmpleado}}
+        </label>
+        {% endfor %}
+      </td>
       <td>${{obj.manoObra}}</td>
       <td>${{obj.total}}</td>
       {% if current_user.is_authenticated  and current_user.is_admin() %} 

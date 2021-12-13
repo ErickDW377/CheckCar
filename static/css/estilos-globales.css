@@ -113,7 +113,7 @@
 /* formularios */
 .form{
     min-width: 300px;
-    width: 30%;
+    width: 50%;
     height: auto;
     background: rgba(0, 0, 0, 0.226);
     margin: auto;
@@ -236,6 +236,15 @@
     height: 10px;
     margin: 3px;
   
+}
+.detalles{
+    height: auto;
+    width: auto;
+    text-align: center;
+    font-size: 100%;   
+    display: block;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 

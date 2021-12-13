@@ -3,13 +3,16 @@ from flask_bootstrap import Bootstrap
 from sqlalchemy.sql.elements import Null
 from sqlalchemy.sql.expression import select
 from sqlalchemy.sql.sqltypes import String
-from DAO import db, Servicios, Usuario, Clientes,Autos, Mecanicos, Productos
+from DAO import db, Servicios, Usuario, Clientes,Autos, Mecanicos, Productos,Detalle
 from flask_login import LoginManager,current_user,login_required,login_user,logout_user
+from array import array
 
 
 
 app=Flask(__name__,template_folder='../pages',static_folder='../static')
 Bootstrap(app)
+
+import json
 
 app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:Hola.123@127.0.0.1/checkCar'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
@@ -72,10 +75,12 @@ def registrarServicios():
         s.tipo = ''
         s.problema = ''
         s.avance = ''
-        s.estatus = ''       
+        s.estatus = ''  
+        autos = Autos() 
         return  render_template(
             'servicios/servicios-formulario.html',
             servicios = s,
+            autos = autos.consultarAll(),                     
             editar = 0)
     else:
         abort(404)
@@ -84,10 +89,13 @@ def registrarServicios():
 @login_required
 def editarServicios(id):
     if current_user.is_authenticated and current_user.is_admin():
-        s=Servicios()        
+        s=Servicios()
+        detalles = Detalle()
+           
         return  render_template(
             'servicios/servicios-formulario.html',
             servicios = s.consultar(id),
+            detalles = detalles.consultar(id),            
             editar=1)
     else:
         abort(404)
@@ -129,13 +137,63 @@ def eliminarServicios(id):
     else:
         abort(404)
 
-@app.route('/detallesServicios')
+@app.route('/servicios/detallesTotal/<int:id>',methods=['get'])
 @login_required
-def detallesServicios():
-    if current_user.is_authenticated and current_user.is_admin():      
-        return  render_template('servicios/servicios-detalles.html')
+def consultarSubtotal(id):
+    if current_user.is_authenticated and current_user.is_admin():
+        detalles=Detalle()
+        return json.dumps(detalles.getSuma(id))
     else:
         abort(404)
+
+#Enrutamiento Detalles Servicios
+@app.route('/detallesServicios/<int:servicio>')
+@login_required
+def detallesServicios(servicio):
+    if current_user.is_authenticated and current_user.is_admin():      
+        productos = Productos()
+        mecanicos = Mecanicos()
+        return  render_template('servicios/servicios-detalles.html',
+         servicio = servicio,
+         mecanicos = mecanicos.consultarAll(),
+         productos = productos.consultarAll())
+    else:
+        abort(404)
+
+@app.route('/detallesServicios/guardar', methods=['post'])
+@login_required
+def guardarDetalleServicios():
+    if current_user.is_authenticated and current_user.is_admin():    
+        detalle = Detalle()
+        detalle.idServicio= int(request.form['id'])
+        detalle.idProducto = int(request.form['producto'])
+        detalle.cantidad = request.form['cantidad']
+        detalle.costosU = request.form['costo']
+        detalle.costoTotal = request.form['total']
+        detalle.areaReparacion = request.form['area']
+        detalle.idEmpleado = int(request.form['mecanico'])       
+
+        detalle.registrar()
+
+        producto= Productos()
+        producto=producto.consultar(detalle.idProducto)
+        producto.restarUnidades(detalle.cantidad)
+
+        return editarServicios(detalle.idServicio)
+    else:
+        abort(404)
+
+@app.route('/producto/precio/<int:id>',methods=['get'])
+@login_required
+def consultarPrecio(id):
+    if current_user.is_authenticated and current_user.is_admin():
+        producto=Productos()
+        return json.dumps(producto.consultarPrecio(id))
+    else:
+        abort(404)
+
+
+
 
 # Enrutamiento a Autos
 @app.route('/autos')
