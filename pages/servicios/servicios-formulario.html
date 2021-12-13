@@ -134,22 +134,66 @@
       Detalles:      
       <table class="detalles">
         <thead>
+          <th>            
+          </th>
           <th>Producto</th>
           <th>Cantidad</th>
           <th>Precio</th>
           <th>Total</th>
           <th>Area de reparación</th>
-          <th>Mecanico</th>
+          <th>Mecanico</th>          
         </thead>
         {%for obj in detalles %}  
         <tr>
+          <td>
+            <button
+              class="boton-icono-only"
+              type="button"
+              data-toggle="modal"
+              data-target="#eliminar{{obj.idProducto}}"
+              class="btn btn-info"
+            >
+              <img
+                class="icon-auto"
+                src="{{url_for('static',filename='images/eliminar.png')}}"
+              />
+            </button>        
+          </td>
           <td>{{obj.getProducto()}}</td>
           <td>{{obj.cantidad}}</td>
           <td>{{obj.costosU}}</td>
           <td>{{obj.costoTotal}}</td>
           <td>{{obj.areaReparacion}}</td>
           <td>{{obj.idEmpleado}}</td>
+          
         </tr>
+        <!-- Modal -->
+    <div id="eliminar{{obj.idProducto}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Confirmacion de proceso</h4>
+          </div>
+          <div class="modal-body">
+            <p>¿Estas seguro de eliminar el producto: {{obj.idProducto}} ?</p>
+          </div>
+          <div class="modal-footer">
+            <a href="/detalles/{{obj.idProducto}}/{{obj.idServicio}}" class="btn btn-info"
+              >Aceptar</a
+            >
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
         {% endfor %}
       </table>      
     </div>

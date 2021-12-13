@@ -64,6 +64,9 @@ class Detalle(db.Model):
 
     def consultar(self,id):
         return self.query.filter(Detalle.idServicio==id)
+    
+    def consultar2(self,id,idS):
+        return self.query.filter(Detalle.idServicio==idS, Detalle.idProducto==id).first()
 
     def consultarAll(self):        
         return self.query.all()
@@ -72,8 +75,8 @@ class Detalle(db.Model):
         db.session.merge(self)
         db.session.commit()
 
-    def eliminar(self,id):
-        objeto=self.consultar(id)
+    def eliminar(self,id,idS):
+        objeto=self.consultar2(id,idS)
         db.session.delete(objeto)
         db.session.commit()
 

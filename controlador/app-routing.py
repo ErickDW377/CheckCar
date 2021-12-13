@@ -192,6 +192,16 @@ def consultarPrecio(id):
     else:
         abort(404)
 
+@app.route('/detalles/<int:id>/<int:idS>')
+@login_required
+def eliminarDetalle(id, idS):
+    if current_user.is_authenticated and current_user.is_admin():
+        detalle=Detalle()
+        detalle.eliminar(id,idS)               
+        return  editarServicios(idS)
+    else:
+        abort(404)
+
 
 
 
