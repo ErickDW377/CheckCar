@@ -2,15 +2,19 @@
 
 <body class="fondo">
   <header class="encabezado txt-encabezado">Clientes</header>
+
+  <div id="notificaciones" style="background-color:brown;color:white"> 
+  </div>
+
   {% if get_flashed_messages()%}
         {% for m in get_flashed_messages()%}
         <div class="alert alert-success alert-dismissible alertas-txt">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>{{m}}</strong>
         </div>
-        {% endfor %}
+        {% endfor %}       
   {% endif %}
-  <form class="form" action="/formularioUsuarios/guardar/{{editar}}/{{url}}" method="post" enctype="multipart/form-data">
+  <form class="form" action="/formularioUsuarios/guardar/{{editar}}/{{url}}" method="post" onsubmit="return validar(this)" > 
     <div>
       Id Usuario:
       <input type="number" placeholder="id Usuario" name="idU" value='{{usuarios.idUsuario}}' />
@@ -28,7 +32,7 @@
 
     <div>
       Email:
-      <input type="text" placeholder="Email" name="email" value='{{usuarios.email}}' />
+      <input type="text" placeholder="Email" name="email"  value='{{usuarios.email}}' />
     </div>
 
     <div>
@@ -54,16 +58,9 @@
         <button class="color-danger" type="button">Cancelar</button>
       </a>
     </div>
-
-    <button type="button" onclick="saludar()">
-      jseeee
-    </button>
-
   </form>
 
-  
-
   <script src="{{url_for('static', filename='js/usuarios.js')}}"></script>
-
+  
 </body>
 {% endblock%}
