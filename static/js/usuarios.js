@@ -78,23 +78,22 @@ function tieneCaracerEspecial(cadena) {/*tenga un caracter especial el password*
 
 function consultarEmail() { 
     var ajax = new XMLHttpRequest();
-    var email = document.getElementById("email").value;
-    var url = "/usuarios/email/" + email;
+    var email = document.getElementById("email");
+    var url = "/usuarios/email/" + email.value;
     var div = document.getElementById("notificaciones");
-    console.log(url);
     ajax.open("get", url, true);
     ajax.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           var respuesta=JSON.parse(this.responseText);
-           console.log(respuesta);
-          if(respuesta.status=="Error"){
-           console.log(respuesta.mensaje);   
+          if(respuesta.estatus=="Error" ){
+           email.value=null    
            div.innerHTML=respuesta.mensaje;
           }
           else{
-            console.log(respuesta.mensaje); 
+            console.log(respuesta);  
             div.innerHTML="";
           }
         }
     };
+    ajax.send();
 }
