@@ -458,7 +458,13 @@ def eliminarUsuarios(id):
     else:
         abort(404)
 
-
+@app.route('/usuarios/email/<string:email>',methods=['get'])
+def consultarEmail(email):
+    usuario=Usuario()
+    print("Holi")
+    return json.dumps(usuario.consultarEmail(email))
+                      
+                      
 # Enrutamiento a Clientes
 @app.route('/clientes')
 @login_required

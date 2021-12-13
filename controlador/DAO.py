@@ -213,6 +213,18 @@ class Usuario(UserMixin,db.Model):
             return True
         else:
             return False
+        
+    def consultarEmail(self,email):
+        salida={"estatus":"","mensaje":""}
+        usuario=None
+        usuario=self.query.filter(Usuario.email==email).first()
+        if usuario!=None:
+            salida["estatus"]="Error"
+            salida["mensaje"]="El correo "+email+" ya se encuentra registrado."
+        else:
+            salida["estatus"]="Ok"
+            salida["mensaje"]="El correo "+email+" esta libre."
+        return salida   
     
         
 class Autos(db.Model):

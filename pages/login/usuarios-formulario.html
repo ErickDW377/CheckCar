@@ -27,17 +27,17 @@
 
     <div>
       Usuario:
-      <input type="text" placeholder="Nombre de usuario" name="userName" value='{{usuarios.userName}}' required />
+      <input type="text" placeholder="Nombre de usuario" name="userName" value='{{usuarios.userName}}' required  />
     </div>
 
     <div>
       Email:
-      <input type="text" placeholder="Email" name="email"  value='{{usuarios.email}}' />
+      <input type="text" placeholder="email" name="email" id="email" value='{{usuarios.email}}' onblur="consultarEmail()" />
     </div>
 
     <div>
       Contraseña:
-      <input type="password" placeholder="password" name="password" value='{{usuarios.password}}' required />
+      <input type="password" placeholder="password" name="password" id="password" value='{{usuarios.password}}' required />
     </div>
 
     <div>
