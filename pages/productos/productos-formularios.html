@@ -46,7 +46,7 @@
     </div>
     <div>
       Costo:
-      <input type="number" placeholder="Costo" name="costo" value="{{productos.costo}}" />
+      <input type="number" min="1" placeholder="Costo" name="costo" value="{{productos.costo}}" pattern= "^[1-9][0-9]*$" />
     </div>
 
     <div>
@@ -61,7 +61,7 @@
 
     <div>
       Unidades:
-      <input type="number" placeholder="Unidades" name="unidades" value="{{productos.unidades}}" />
+      <input type="number" min="0" placeholder="Unidades" name="unidades" value="{{productos.unidades}}" pattern= "^[1-9][0-9]*$"/>
     </div>
 
   <div>
